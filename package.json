@@ -12,23 +12,28 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
+    "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.14",
     "@types/react": "~18.2.14",
     "expo": "~49.0.15",
+    "expo-image-picker": "~14.3.2",
     "expo-status-bar": "~1.6.0",
+    "firebase": "^10.6.0",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.72.5",
+    "react-native": "0.72.6",
     "react-native-image-crop-picker": "^0.40.1",
     "react-native-image-picker": "^7.0.2",
     "react-native-vector-icons": "^10.0.2",
     "react-navigation": "^5.0.0",
-    "expo-image-picker": "~14.3.2"
+    "expo-location": "~16.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react-native": "^0.72.6",
+    "babel-plugin-module-resolver": "^5.0.0",
     "typescript": "^5.2.2"
   },
   "private": true

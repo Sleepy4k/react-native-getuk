@@ -1,14 +1,13 @@
 {
-  
   "expo": {
     "name": "react-native-getuk",
     "slug": "react-native-getuk",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logogetuk.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logogetuk.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,22 +15,28 @@
       "**/*"
     ],
     "assets": [
-      "./assets/icon.png",
-      "./assets/splash.png",
-      "./assets/adaptive-icon.png"
+      "./assets/logogetuk.png"
     ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logogetuk.png",
         "backgroundColor": "#ffffff",
         "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/logogetuk.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ]
   }
 }
