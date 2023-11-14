@@ -11,6 +11,7 @@ import {
   Image,
   Keyboard,
   TextInput,
+  ScrollView,
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
@@ -151,35 +152,43 @@ export default function AdminEditShop({ route, navigation }) {
         <Text style={styles.text1}>Edit</Text>
       </View>
 
-      <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
-        <Image style={styles.Image} source={chosenImage} />
-      </TouchableOpacity>
+      <ScrollView>
+        <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
+          <Image style={styles.Image} source={chosenImage} />
+        </TouchableOpacity>
 
-      <View style={styles.card1}>
-        <View style={{ flexDirection: 'row' }}>
-          <TextInput
+        <View style={styles.card1}>
+          <TextInput 
             style={styles.textInput}
             value={locationName}
             editable={!loading}
             onChangeText={(text) => setLocationName(text)}
           />
+        </View>
 
-          <FontAwesomeIcon icon={faStar} size={13} color='#000' style={styles.icon2} />
-          <TextInput
-            style={styles.textInput}
-            value={starRating}
+        <View style={styles.card1}>
+          <TextInput 
+            style={[styles.textInput, styles.text4, { opacity: 0.6 }]}
+            value={address}
             editable={!loading}
-            onChangeText={(text) => setStarRating(text)}
+            onChangeText={(text) => setAddress(text)}
           />
         </View>
 
-        <TextInput
-          style={[styles.textInput, styles.text4, { opacity: 0.6 }]}
-          value={address}
-          editable={!loading}
-          onChangeText={(text) => setAddress(text)}
-        />
-      </View>
+        <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <TouchableOpacity key={star} onPress={() => setStarRating(star)} disabled={loading}>
+              <FontAwesomeIcon
+                key={star}
+                icon={faStar}
+                size={27}
+                color={star <= starRating ? '#000' : '#ccc'}
+                style={styles.icon2}
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
 
       <View style={styles.card2}>
         <TouchableOpacity onPress={validate} disabled={loading}>

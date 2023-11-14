@@ -7,19 +7,19 @@ const styles = StyleSheet.create({
   },
   Image: {
     marginTop: 20,
-    width: 390,
+    width: 360,
     height: 390,
     alignSelf: 'center',
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
-    shadowRadius: 4
+    shadowRadius: 4,
   },
   card1: {
     alignSelf: 'center',
-    width: 390,
-    height: 200,
+    width: 360,
+    height: 90,
     backgroundColor: 'white',
     marginTop: 30,
     borderRadius: 10,
@@ -28,10 +28,19 @@ const styles = StyleSheet.create({
   card2: {
     alignSelf: 'center',
     width: 390,
-    height: 100,
+    height: 180,
     backgroundColor: 'white',
     marginTop: 30,
     borderRadius: 10,
+  },
+  card3: {
+    alignSelf: 'center',
+    width: 360,
+    height: 200,
+    backgroundColor: 'white',
+    marginTop: 30,
+    borderRadius: 10,
+    padding: 10,
   },
   button: {
     alignSelf: 'center',
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'green',
     borderRadius: 50,
-    marginTop: 40,
+    marginTop: 20,
     justifyContent: 'center',
   },
   icon1: {
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
   icon2: {
-    marginTop: 20,
+    marginTop: 15,
     marginLeft: 30,
   },
   icon3: {

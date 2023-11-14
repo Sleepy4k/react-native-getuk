@@ -18,8 +18,8 @@ import {
 export default function AdminAddShop({ navigation }) {
   const [address, setAddress] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const [chosenImage, setChosenImage] = React.useState({});
   const [starRating, setStarRating] = React.useState(null);
+  const [chosenImage, setChosenImage] = React.useState(null);
   const [locationName, setLocationName] = React.useState(null);
   const [coordinates, setCoordinates] = React.useState({
     latitude: null,
@@ -122,11 +122,6 @@ export default function AdminAddShop({ navigation }) {
     }
   };
 
-  const handleStar = (number) => {
-    // Implement for filled yellow color in star icon
-    setStarRating(number);
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.nav}>
@@ -135,6 +130,10 @@ export default function AdminAddShop({ navigation }) {
         </TouchableOpacity>
 
         <Text style={styles.text1}>Add Shop</Text>
+
+        <TouchableOpacity onPress={validate}>
+          <Text style={styles.text3}>Save</Text>
+        </TouchableOpacity>
       </View>
 
       <TextInput
@@ -163,14 +162,17 @@ export default function AdminAddShop({ navigation }) {
 
       <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
         <View style={styles.card2}>
-          {chosenImage && <Image source={{ uri: chosenImage?.uri }} style={styles.image} />}
-          <Text style={styles.text2}>Choose Image</Text>
+          {chosenImage ? (
+            <Image source={{ uri: chosenImage?.uri }} style={styles.image} />
+          ) : (
+            <Text style={styles.text2}>Choose Image</Text>
+          )}
         </View>
       </TouchableOpacity>
 
-      <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+      <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 15 }}>
         {[1, 2, 3, 4, 5].map((star) => (
-          <TouchableOpacity key={star} onPress={() => handleStar(star)} disabled={loading}>
+          <TouchableOpacity key={star} onPress={() => setStarRating(star)} disabled={loading}>
             <FontAwesomeIcon
               key={star}
               icon={faStar}
@@ -180,14 +182,6 @@ export default function AdminAddShop({ navigation }) {
             />
           </TouchableOpacity>
         ))}
-      </View>
-
-      <View style={styles.card1}>
-        <TouchableOpacity onPress={validate} disabled={loading}>
-          <View style={styles.button}>
-            <Text style={styles.text2}>Create</Text>
-          </View>
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

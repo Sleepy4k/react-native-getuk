@@ -16,6 +16,16 @@ const styles = StyleSheet.create({
   card2: {
     alignSelf: 'center',
     width: 360,
+    height: 200,
+    backgroundColor: 'white',
+    marginTop: 20,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  card3: {
+    alignSelf: 'center',
+    width: 360,
     height: 260,
     backgroundColor: 'white',
     marginTop: 20,
@@ -49,8 +59,15 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 23,
-    color: 'white',
+    color: 'black',
     alignSelf: 'center',
+  },
+  text3: {
+    fontSize: 23,
+    color: 'green',
+    alignSelf: 'center',
+    marginTop: 22,
+    marginLeft: 155
   },
   nav: {
     padding: 10,
@@ -80,14 +97,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     width: 360,
-    height: 120,
+    height: 90,
     borderRadius: 10,
     padding: 15,
     marginTop: 20,
   },
   image: {
     width: 200,
-    height: 200,
+    marginTop: 10,
+    height: 175,
     borderRadius: 10,
     marginBottom: 10,
   }
