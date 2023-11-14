@@ -16,12 +16,12 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.sleepy4k.getukan",
+      "bundleIdentifier": "com.benjamin4k.getukan",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
-      "package": "com.sleepy4k.getukan",
+      "package": "com.benjamin4k.getukan",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/logogetuk.png",

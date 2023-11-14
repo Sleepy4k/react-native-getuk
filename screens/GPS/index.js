@@ -24,23 +24,6 @@ export default function GPS({ navigation }) {
     }).start();
   }, [slideAnim]);
 
-  React.useEffect(() => {
-    (async () => {
-      try {
-        if (location) return;
-
-        let { status } = await expoLocation.requestForegroundPermissionsAsync();
-
-        if (status !== 'granted') return;
-
-        let userLocation = await expoLocation.getCurrentPositionAsync({});
-        setLocation(userLocation);
-      } catch (error) {
-        console.log(`error while get location: ${error}`);
-      }
-    })
-  }, []);
-
   const translateY = slideAnim.interpolate({
     inputRange: [0, 3],
     outputRange: [250, 0],
