@@ -52,6 +52,13 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your client."
         }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsImpl": "mapbox",
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiYmVuamFtaW40ayIsImEiOiJjbG93eGZibW0xYTgyMmtxMDV0c3R2cDcwIn0.gJucuQzpbjNDHfUIdbFUuQ"
+        }
       ]
     ],
     "extra": {
