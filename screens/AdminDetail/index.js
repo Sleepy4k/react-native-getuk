@@ -15,7 +15,8 @@ import {
 
 const handleDelete = async (id, navigation) => {
   try {
-    await storeModel.deleteStore(id);
+    const data = await storeModel.deleteStore(id);
+    await cloudFile.deleteFile(data?.image);
     navigation.replace('AdminDashboard');
   } catch (error) {
     console.log(`error while delete store: ${error}`);
@@ -61,7 +62,7 @@ export default function AdminDetail({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.nav}>
-        <TouchableOpacity onPress={() => navigation.navigate('AdminDashboard')}>
+        <TouchableOpacity onPress={() => navigation.replace('AdminDashboard')}>
           <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
         </TouchableOpacity>
 

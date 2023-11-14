@@ -39,15 +39,32 @@ export const findStore = async (id) => {
 
 export const createStore = async (data) => {
   const docRef = await addDoc(collection(db, "stores"), data);
-  return docRef.id;
+  const docSnap = await getDoc(docRef);
+
+  return {
+    id: docSnap.id,
+    ...docSnap.data()
+  };
 }
 
 export const updateStore = async (id, data) => {
   const docRef = doc(db, "stores", id);
   await updateDoc(docRef, data);
+  const docSnap = await getDoc(docRef);
+
+  return {
+    id: docSnap.id,
+    ...docSnap.data()
+  };
 }
 
 export const deleteStore = async (id) => {
   const docRef = doc(db, "stores", id);
+  const docSnap = await getDoc(docRef);
   await deleteDoc(docRef);
+
+  return {
+    id: docSnap.id,
+    ...docSnap.data()
+  };
 }

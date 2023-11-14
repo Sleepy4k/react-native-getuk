@@ -67,7 +67,7 @@ export default function UserDashboard({navigation}) {
         </View>
       </ScrollView>
 
-      <TouchableOpacity onPress={() => navigation.navigate('')} style={styles.floatingButton}>
+      <TouchableOpacity onPress={() => alert('Under Maintenance')} style={styles.floatingButton}>
         <FontAwesomeIcon icon={faLocationCrosshairs} size={25} color='white' style={styles.icon3}/>
       </TouchableOpacity>
     </SafeAreaView>

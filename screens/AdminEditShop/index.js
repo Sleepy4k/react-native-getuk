@@ -120,7 +120,7 @@ export default function AdminEditShop({ route, navigation }) {
         if (oldImage) await cloudFile.deleteFile(oldImage);
 
         const blob = await getBlobFroUri(chosenImage.uri);
-        url = await cloudFile.uploadFile(blob, chosenImage.type);
+        url = await cloudFile.uploadFile(blob);
       } else {
         url = oldImage;
       }
@@ -144,7 +144,7 @@ export default function AdminEditShop({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.nav}>
-        <TouchableOpacity onPress={() => navigation.navigate('AdminDetail', { param: { store: param.store } })}>
+        <TouchableOpacity onPress={() => navigation.replace('AdminDetail', { param: { store: param.store } })}>
           <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
         </TouchableOpacity>
 

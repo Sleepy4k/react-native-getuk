@@ -1,54 +1,136 @@
 import React from 'react';
-import * as ImagePicker from 'expo-image-picker';
 import styles from './styles';
+import { storeModel } from '@models';
+import * as ImagePicker from 'expo-image-picker';
+import { cloudFile, getBlobFroUri } from '@helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import {
   Text,
   View,
   Image,
+  Keyboard,
   TextInput,
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
 
 export default function AdminAddShop({ navigation }) {
-  const [shopName, setShopName] = React.useState('');
-  const [location, setLocation] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const [rating, setRating] = React.useState(0);
-  const [image, setImage] = React.useState([]);
+  const [address, setAddress] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [chosenImage, setChosenImage] = React.useState({});
+  const [starRating, setStarRating] = React.useState(null);
+  const [locationName, setLocationName] = React.useState(null);
+  const [coordinates, setCoordinates] = React.useState({
+    latitude: null,
+    longitude: null
+  });
 
   const handleChooseImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync();
+    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (!permission.granted) {
+      alert('permission required to access camera roll');
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
     if (!result.canceled) {
-      setImage(result.assets[0]);
+      setChosenImage(result.assets[0]);
     }
   };
 
-  const handleSave = () => {
-    // Implementasi penyimpanan data (misalnya: kirim ke server atau menyimpan lokal)
-    console.log('Data tersimpan:', {
-      shopName,
-      location,
-      description,
-      rating,
-      image,
-    });
+  const validate = async () => {
+    Keyboard.dismiss();
+    if (loading) return;
 
-    // Navigasi kembali ke Dashboard1
-    navigation.navigate('Dashboard1');
+    setLoading(true);
+    let valid = true;
+
+    if (!locationName) {
+      valid = false;
+      alert('Nama lokasi tidak boleh kosong');
+    } else if (locationName.length < 5) {
+      valid = false;
+      alert('Nama lokasi minimal 5 karakter');
+    } else if (locationName.length > 150) {
+      valid = false;
+      alert('Nama lokasi maksimal 150 karakter');
+    }
+
+    if (!starRating) {
+      valid = false;
+      alert('Rating tidak boleh kosong');
+    } else if (starRating < 1) {
+      valid = false;
+      alert('Rating minimal 1');
+    } else if (starRating > 5) {
+      valid = false;
+      alert('Rating maksimal 5');
+    }
+
+    if (!address) {
+      valid = false;
+      alert('Alamat tidak boleh kosong');
+    } else if (address.length < 5) {
+      valid = false;
+      alert('Alamat minimal 5 karakter');
+    } else if (address.length > 255) {
+      valid = false;
+      alert('Alamat maksimal 255 karakter');
+    }
+
+    if (!chosenImage.uri) {
+      valid = false;
+      alert('Pilih gambar terlebih dahulu');
+    } else if (chosenImage.size > 5000000) {
+      valid = false;
+      alert('Ukuran gambar maksimal 5MB');
+    }
+
+    if (valid) {
+      handleSave();
+    } else {
+      setLoading(false);
+    }
+  }
+
+  const handleSave = async () => {
+    try {
+      const blob = await getBlobFroUri(chosenImage.uri);
+      const url = await cloudFile.uploadFile(blob);
+
+      await storeModel.createStore({
+        image: url,
+        name: locationName,
+        rating: starRating.toString(),
+        address
+      });
+
+      navigation.replace('AdminDashboard');
+    } catch (error) {
+      console.log(`error while save data: ${error}`);
+      alert('error while save data');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleStar = (number) => {
-    console.log(`Jumlah bintang: ${number}`);
+    // Implement for filled yellow color in star icon
+    setStarRating(number);
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.nav}>
-        <TouchableOpacity onPress={() => navigation.navigate('AdminDashboard')}>
+        <TouchableOpacity onPress={() => navigation.replace('AdminDashboard')}>
           <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
         </TouchableOpacity>
 
@@ -58,41 +140,42 @@ export default function AdminAddShop({ navigation }) {
       <TextInput
         style={styles.input1}
         placeholder="Shop Name"
-        value={shopName}
-        onChangeText={(text) => setShopName(text)}
+        value={locationName}
+        editable={!loading}
+        onChangeText={(text) => setLocationName(text)}
       />
 
       <TextInput
         style={styles.input2}
         placeholder="Location"
-        value={location}
-        onChangeText={(text) => setLocation(text)}
+        editable={!loading}
       />
 
       <TextInput
         style={styles.input3}
-        placeholder="Description"
+        placeholder="Address"
         multiline={true}
         numberOfLines={4}
-        value={description}
-        onChangeText={(text) => setDescription(text)}
+        value={address}
+        editable={!loading}
+        onChangeText={(text) => setAddress(text)}
       />
 
-      <TouchableOpacity onPress={handleChooseImage}>
+      <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
         <View style={styles.card2}>
-          {image && <Image source={{ uri: image?.uri }} style={styles.image} />}
+          {chosenImage && <Image source={{ uri: chosenImage?.uri }} style={styles.image} />}
           <Text style={styles.text2}>Choose Image</Text>
         </View>
       </TouchableOpacity>
 
       <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
         {[1, 2, 3, 4, 5].map((star) => (
-          <TouchableOpacity key={star} onPress={() => handleStar(star)}>
+          <TouchableOpacity key={star} onPress={() => handleStar(star)} disabled={loading}>
             <FontAwesomeIcon
               key={star}
               icon={faStar}
               size={27}
-              color={star <= rating ? '#000' : '#ccc'}
+              color={star <= starRating ? '#000' : '#ccc'}
               style={styles.icon2}
             />
           </TouchableOpacity>
@@ -100,7 +183,7 @@ export default function AdminAddShop({ navigation }) {
       </View>
 
       <View style={styles.card1}>
-        <TouchableOpacity onPress={handleSave}>
+        <TouchableOpacity onPress={validate} disabled={loading}>
           <View style={styles.button}>
             <Text style={styles.text2}>Create</Text>
           </View>
