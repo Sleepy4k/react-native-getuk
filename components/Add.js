@@ -40,6 +40,9 @@ export default function Add({ navigation }) {
           <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
         </TouchableOpacity>
         <Text style={styles.text1}>Add Shop</Text>
+        <TouchableOpacity onPress={handleSave}>
+            <Text style={styles.text3}>Save</Text>
+        </TouchableOpacity>
       </View>
       <TextInput
         style={styles.input1}
@@ -67,6 +70,9 @@ export default function Add({ navigation }) {
           <Text style={styles.text2}>Choose Image</Text>
         </View>
       </TouchableOpacity>
+      <View style={styles.caard3}>
+
+      </View>
       <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
         {[1, 2, 3, 4, 5].map((star) => (
           <FontAwesomeIcon
@@ -77,13 +83,6 @@ export default function Add({ navigation }) {
             style={styles.icon2}
           />
         ))}
-      </View>
-      <View style={styles.card1}>
-        <TouchableOpacity onPress={handleSave}>
-          <View style={styles.button}>
-            <Text style={styles.text2}>Save</Text>
-          </View>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -103,6 +102,16 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   card2: {
+    alignSelf: 'center',
+    width: 360,
+    height: 200,
+    backgroundColor: 'white',
+    marginTop: 20,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  caard3: {
     alignSelf: 'center',
     width: 360,
     height: 260,
@@ -141,6 +150,13 @@ const styles = StyleSheet.create({
     color: 'white',
     alignSelf: 'center',
   },
+  text3: {
+    fontSize: 23,
+    color: 'green',
+    alignSelf: 'center',
+    marginTop: 22,
+    marginLeft: 175
+  },
   nav: {
     padding: 10,
     marginTop: 30,
@@ -154,7 +170,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     padding: 15,
-    marginTop: 30,
+    marginTop: 10,
   },
   input2: {
     alignSelf: 'center',
@@ -169,7 +185,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     width: 360,
-    height: 120,
+    height: 90,
     borderRadius: 10,
     padding: 15,
     marginTop: 20,

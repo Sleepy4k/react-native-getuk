@@ -22,9 +22,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="gps" component={gps}/>
-      <Stack.Screen name="Add" component={Add}/>
       <Stack.Screen name='Edit' component={Edit}/>
+      <Stack.Screen name="Add" component={Add}/>
+      <Stack.Screen name="gps" component={gps}/>
       <Stack.Screen name='DetailAdmin' component={DetailAdmin}/>
       
         <Stack.Screen name='Dashboard2' component={Dashboard2}/>
