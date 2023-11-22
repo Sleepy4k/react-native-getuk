@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 const App = () => {
   return (
     <AuthProvider>
-      <CustomStatusBar barStyle="light" />
+      <CustomStatusBar barStyle="auto" />
       <NavigationContainer>
         <MainStack />
       </NavigationContainer>
