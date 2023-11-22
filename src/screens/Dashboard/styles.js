@@ -11,15 +11,15 @@ const styles = StyleSheet.create({
   floatingButton: {
     width: 60,
     height: 60,
-    bottom: 20,
+    bottom: 35,
     right: 20,
     marginRight: 20,
-    borderRadius: 50, 
+    borderRadius: 50,
     marginBottom: 70,
     alignItems: 'center',
-    position: 'absolute', 
+    position: 'absolute',
     justifyContent: 'center',
-    backgroundColor: '#ff7953' 
+    backgroundColor: '#ff7953'
   },
   icon3: {
     fontSize: 35,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     marginTop: 30,
     color: 'black',
-    marginLeft: 138
+    marginLeft: 20
   },
   text2: {
     padding: 10,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   card1: {
     width: 420,
-    height: 120,
+    height: 200,
     elevation: 5,
     borderRadius: 10,
     shadowRadius: 4,
@@ -82,11 +82,19 @@ const styles = StyleSheet.create({
   },
   icon1: {
     marginTop: 58,
-    marginLeft: 75
+    marginLeft: 160
   },
   icon2: {
     marginTop: 30,
     marginLeft: 30
+  },
+  input1: {
+    width: 360,
+    height: 50,
+    padding: 15,
+    borderRadius: 10,
+    alignSelf: 'center',
+    backgroundColor: '#efefef'
   }
 });
 

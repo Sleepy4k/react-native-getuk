@@ -18,20 +18,14 @@ import {
 export default function AddShop({ navigation }) {
   const [address, setAddress] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [location, setLocation] = React.useState(null);
   const [starRating, setStarRating] = React.useState(null);
   const [chosenImage, setChosenImage] = React.useState(null);
   const [locationName, setLocationName] = React.useState(null);
-  const [coordinates, setCoordinates] = React.useState({
-    latitude: null,
-    longitude: null
-  });
 
   const handleChooseImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (!permission.granted) {
-      return notification('permission required to access camera roll', 'Error');
-    }
+    if (!permission.granted) return notification('permission required to access camera roll', 'Error');
 
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -40,9 +34,7 @@ export default function AddShop({ navigation }) {
       quality: 1,
     });
 
-    if (!result.canceled) {
-      setChosenImage(result.assets[0]);
-    }
+    if (!result.canceled) setChosenImage(result.assets[0]);
   };
 
   const validate = async () => {
@@ -57,12 +49,12 @@ export default function AddShop({ navigation }) {
       return notification('Nama lokasi maksimal 150 karakter', 'Error');
     }
 
-    if (!starRating) {
-      return notification('Rating tidak boleh kosong', 'Error');
-    } else if (starRating < 1) {
-      return notification('Rating minimal 1', 'Error');
-    } else if (starRating > 5) {
-      return notification('Rating maksimal 5', 'Error');
+    if (!location) {
+      return notification('Link google maps tidak boleh kosong', 'Error');
+    } else if (location < 15) {
+      return notification('Link google maps minimal 15 karakter', 'Error');
+    } else if (location.length > 255) {
+      return notification('Link google maps maksimal 255 karakter', 'Error');
     }
 
     if (!address) {
@@ -73,10 +65,18 @@ export default function AddShop({ navigation }) {
       return notification('Alamat maksimal 255 karakter', 'Error');
     }
 
-    if (!chosenImage.uri) {
+    if (!chosenImage || !chosenImage?.uri) {
       return notification('Pilih gambar terlebih dahulu', 'Error');
     } else if (chosenImage.size > 5000000) {
       return notification('Ukuran gambar maksimal 5MB', 'Error');
+    }
+
+    if (!starRating) {
+      return notification('Rating tidak boleh kosong', 'Error');
+    } else if (starRating < 1) {
+      return notification('Rating minimal 1', 'Error');
+    } else if (starRating > 5) {
+      return notification('Rating maksimal 5', 'Error');
     }
 
     setLoading(true);
@@ -92,6 +92,7 @@ export default function AddShop({ navigation }) {
         image: url,
         name: locationName,
         rating: starRating.toString(),
+        location,
         address
       });
 
@@ -128,8 +129,10 @@ export default function AddShop({ navigation }) {
 
       <TextInput
         style={styles.input2}
-        placeholder="Location"
+        placeholder="Link Google Maps"
+        value={location}
         editable={!loading}
+        onChangeText={(text) => setLocation(text)}
       />
 
       <TextInput

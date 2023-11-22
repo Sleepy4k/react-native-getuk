@@ -24,6 +24,7 @@ export default function EditShop({ route, navigation }) {
   const [oldImage, setOldImage] = React.useState(null);
   const [chosenImage, setChosenImage] = React.useState({});
   const [address, setAddress] = React.useState(param.store.address);
+  const [location, setLocation] = React.useState(param.store.location);
   const [starRating, setStarRating] = React.useState(param.store.rating);
   const [locationName, setLocationName] = React.useState(param.store.name);
 
@@ -39,10 +40,7 @@ export default function EditShop({ route, navigation }) {
 
   const handleChooseImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (!permission.granted) {
-      return notification('permission required to access camera roll', 'Error');
-    }
+    if (!permission.granted) return notification('permission required to access camera roll', 'Error');
 
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -69,12 +67,12 @@ export default function EditShop({ route, navigation }) {
       return notification('Nama lokasi maksimal 150 karakter', 'Error');
     }
 
-    if (!starRating) {
-      return notification('Rating tidak boleh kosong', 'Error');
-    } else if (starRating < 1) {
-      return notification('Rating minimal 1', 'Error');
-    } else if (starRating > 5) {
-      return notification('Rating maksimal 5', 'Error');
+    if (!location) {
+      return notification('Link google maps tidak boleh kosong', 'Error');
+    } else if (location < 15) {
+      return notification('Link google maps minimal 15 karakter', 'Error');
+    } else if (location.length > 255) {
+      return notification('Link google maps maksimal 255 karakter', 'Error');
     }
 
     if (!address) {
@@ -85,10 +83,18 @@ export default function EditShop({ route, navigation }) {
       return notification('Alamat maksimal 255 karakter', 'Error');
     }
 
-    if (!chosenImage.uri) {
+    if (!chosenImage || !chosenImage?.uri) {
       return notification('Pilih gambar terlebih dahulu', 'Error');
     } else if (chosenImage.size > 5000000) {
       return notification('Ukuran gambar maksimal 5MB', 'Error');
+    }
+
+    if (!starRating) {
+      return notification('Rating tidak boleh kosong', 'Error');
+    } else if (starRating < 1) {
+      return notification('Rating minimal 1', 'Error');
+    } else if (starRating > 5) {
+      return notification('Rating maksimal 5', 'Error');
     }
 
     setLoading(true);
@@ -149,8 +155,10 @@ export default function EditShop({ route, navigation }) {
 
         <TextInput
           style={styles.input2}
-          placeholder="Location"
+          placeholder="Link Google Maps"
+          value={location}
           editable={!loading}
+          onChangeText={(text) => setLocation(text)}
         />
 
         <TextInput

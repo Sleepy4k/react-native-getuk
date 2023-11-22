@@ -1,10 +1,10 @@
 import db from "@services/firestore";
 import {
-  doc,
+  where,
+  query,
   addDoc,
+  getDoc,
   getDocs,
-  deleteDoc,
-  updateDoc,
   collection
 } from 'firebase/firestore';
 
@@ -23,35 +23,20 @@ export const getUsers = async () => {
 }
 
 export const findUser = async (email) => {
-  const users = await getUsers();
-  return users.find(user => user.email === email);
+  const querySnapshot = await getDocs(query(collection(db, "users"), where("email", "==", email)));
+  const user = querySnapshot.docs[0];
+
+  if (!user) return null;
+
+  return {
+    id: user.id,
+    ...user.data()
+  };
 }
 
 export const createUser = async (data) => {
   const docRef = await addDoc(collection(db, "users"), data);
   const docSnap = await getDoc(docRef);
-
-  return {
-    id: docSnap.id,
-    ...docSnap.data()
-  };
-}
-
-export const updateUser = async (id, data) => {
-  const docRef = doc(db, "users", id);
-  await updateDoc(docRef, data);
-  const docSnap = await getDoc(docRef);
-
-  return {
-    id: docSnap.id,
-    ...docSnap.data()
-  };
-}
-
-export const deleteUser = async (id) => {
-  const docRef = doc(db, "users", id);
-  const docSnap = await getDoc(docRef);
-  await deleteDoc(docRef);
 
   return {
     id: docSnap.id,

@@ -19,7 +19,8 @@ export default function Login({ navigation }) {
   const [slideAnim] = React.useState(new Animated.Value(0));
   const [data, setData] = React.useState({
     email: '',
-    password: ''
+    password: '',
+    role: 'user'
   });
 
   const [errors, setErrors] = React.useState({
@@ -85,30 +86,20 @@ export default function Login({ navigation }) {
     }
 
     if (valid) {
-      handleLogin();
+      handleRegister();
     } else {
       setLoading(false);
     }
   }
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const user = await userModel.findUser(data.email);
-
-      if (user) {
-        if (user.password === data.password) {
-          await setLoggedIn(user);
-
-          navigation.navigate('Dashboard');
-        } else {
-          notification('Password salah', 'Error');
-        }
-      } else {
-        notification('Akun tidak ditemukan', 'Error');
-      }
+      const user = await userModel.createUser(data);
+      await setLoggedIn(user);
+      navigation.replace('Dashboard');
     } catch (error) {
-      notification('Login error', 'Error');
-      console.log('Login error', error);
+      notification('Register error', 'Error');
+      console.log('Register error', error);
     } finally {
       setLoading(false);
     }
@@ -116,10 +107,10 @@ export default function Login({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text1}>Login</Text>
+      <Text style={styles.text1}>Register</Text>
 
       <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
-        <Text style={styles.text2}>Login Untuk Masuk Sistem</Text>
+        <Text style={styles.text2}>Daftar Akun Sebagai Pengguna</Text>
 
         <View>
           <TextInput style={styles.input1} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
@@ -132,11 +123,11 @@ export default function Login({ navigation }) {
         </View>
 
         <TouchableOpacity onPress={validate} style={styles.button1} disabled={loading}>
-          <Text style={styles.text3}>Masuk</Text>
+          <Text style={styles.text3}>Daftar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.replace('Register')} style={styles.button2} disabled={loading}>
-          <Text style={styles.text3}>Daftar</Text>
+        <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.button2} disabled={loading}>
+          <Text style={styles.text3}>Masuk</Text>
         </TouchableOpacity>
       </Animated.View>
     </SafeAreaView>

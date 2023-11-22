@@ -6,6 +6,7 @@ import {
   Login,
   Landing,
   AddShop,
+  Register,
   EditShop,
   Dashboard,
   DetailShop
@@ -53,6 +54,7 @@ const MainStack = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Landing" component={Landing} />
       <Stack.Screen name="AddShop" component={AddShop} />
+      <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="EditShop" component={EditShop} />
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="DetailShop" component={DetailShop} />

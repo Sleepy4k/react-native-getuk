@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef'
   },
   Image: {
-    width: 390,
-    height: 390,
+    width: 300,
+    height: 300,
     marginTop: 20,
     shadowRadius: 4,
     borderRadius: 20,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 40,
     margin: 50,
-    marginTop: 50,
+    marginTop: 15,
     borderRadius: 10,
     backgroundColor: 'green'
   },
@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 40,
     margin: 50,
-    marginTop: 50,
+    marginTop: 15,
     borderRadius: 10,
     backgroundColor: 'red'
   },
   card1: {
     width: 390,
-    height: 200,
+    height: 240,
     marginTop: 30,
     borderRadius: 10,
     alignSelf: 'center',
@@ -49,8 +49,9 @@ const styles = StyleSheet.create({
     marginRight: 30
   },
   icon2: {
-    marginTop: 20,
-    marginLeft: 30
+    margin: 20,
+    padding: 10,
+    alignSelf: 'center'
   },
   icon3: {
     margin: 20,

@@ -39,7 +39,7 @@ export default function Landing({ navigation }) {
         <Text style={styles.text1}>Lokasi Toko Getuk Sokaraja</Text>
         <Text style={styles.text2}>Temukan toko oleh getuk khas sokaraja di sekitarmu</Text>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.button}>
           <Text style={styles.text3}>Masuk</Text>
         </TouchableOpacity>
       </Animated.View>

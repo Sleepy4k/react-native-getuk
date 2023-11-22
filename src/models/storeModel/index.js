@@ -1,6 +1,8 @@
 import db from "@services/firestore";
 import {
   doc,
+  where,
+  query,
   addDoc,
   getDoc,
   getDocs,
@@ -67,4 +69,19 @@ export const deleteStore = async (id) => {
     id: docSnap.id,
     ...docSnap.data()
   };
+}
+
+export const searchStore = async (name) => {
+  const stores = [];
+  const q = query(collection(db, "stores"), where("name", ">=", name), where("name", "<=", name + "\uf8ff"));
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    stores.push({
+      id: doc.id,
+      ...doc.data()
+    });
+  });
+
+  return stores;
 }
