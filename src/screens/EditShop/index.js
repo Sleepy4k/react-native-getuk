@@ -18,7 +18,7 @@ import {
 
 export default function EditShop({ route, navigation }) {
   const param = route.params.param;
-  
+
   const [loading, setLoading] = React.useState(false);
   const [newImage, setNewImage] = React.useState(false);
   const [oldImage, setOldImage] = React.useState(null);
@@ -118,6 +118,7 @@ export default function EditShop({ route, navigation }) {
         image: url,
         name: locationName,
         rating: starRating,
+        location,
         address,
       });
 
