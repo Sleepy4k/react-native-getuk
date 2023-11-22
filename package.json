@@ -5,10 +5,12 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "expo start --clear",
+    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "tunnel": "expo start --tunnel",
+    "clear": "expo start --clear",
     "doctor": "expo-doctor"
   },
   "author": "Benjamin4k",
@@ -39,6 +41,7 @@
     "expo-splash-screen": "^0.17.5",
     "expo-status-bar": "~1.4.2",
     "firebase": "^10.6.0",
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.8.1",
     "react": "18.1.0",
     "react-native": "0.70.8",
