@@ -20,7 +20,7 @@ export default function Dashboard1({navigation}) {
           <View style={styles.card1}>
           <View style={{flexDirection:'row'}}>
             <Text style={styles.text1}>Data Lokasi</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('gps')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <FontAwesomeIcon icon={faSignOut} size={20} color='#000' style={styles.icon1}/>
             </TouchableOpacity>
           </View>

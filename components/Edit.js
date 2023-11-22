@@ -11,6 +11,7 @@ export default function Edit({ navigation }) {
     const [starRating, setStarRating] = React.useState('4');
     const [address, setAddress] = useState("Jl.Jend.Sudirman,No.155,Sokaraja Tengah,Dusun 1, Sokaraja Kulon,Kec.Banyumas, Kabupaten Banyumas, Jawa tengah 53181");
     const [rating, setRating] = useState(0);
+    const [link, setLink] = useState("https://maps.app.goo.gl/QCxuWCRFPgG7aXf68")
 
     const handleChooseImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
@@ -37,7 +38,7 @@ export default function Edit({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.nav}>
-                <TouchableOpacity onPress={() => navigation.navigate('Dashboard1')}>
+                <TouchableOpacity onPress={() => navigation.navigate('DetailAdmin')}>
                     <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
                 </TouchableOpacity>
                 <Text style={styles.text1}>Edit</Text>
@@ -60,7 +61,13 @@ export default function Edit({ navigation }) {
                     onChangeText={(text) => setAddress(text)}
                 />
             </View>
-            <View style={styles.card3}></View>
+            <View style={styles.card1}>
+                <TextInput
+                    style={[styles.textInput, styles.text4, { opacity: 0.6 }]}
+                    value={link}
+                    onChangeText={(text) => setLink(text)}
+                />
+            </View>
             <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
             {[1, 2, 3, 4, 5].map((star) => (
                 <FontAwesomeIcon

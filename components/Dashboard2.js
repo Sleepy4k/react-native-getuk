@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { faAdd, faArrowLeft, faDiagramNext, faDoorClosed, faFlask, faLocation, faLocationArrow, faLocationCrosshairs, faLocationDot, faLocationPin, faLocationPinLock, faPlaneCircleExclamation, faSignOut, faSignOutAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faArrowLeft, faDiagramNext, faDoorClosed, faFlask, faLocation, faLocationArrow, faLocationCrosshairs, faLocationDot, faLocationPin, faLocationPinLock, faPlaneCircleExclamation, faSearch, faSignOut, faSignOutAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   Text,
@@ -15,21 +15,23 @@ import {
 } from 'react-native';
 
 export default function Dashboard2({navigation}) {
+  
     return(
         <View style={styles.container}>
           <View style={styles.card1}>
           <View style={{flexDirection:'row'}}>
             <Text style={styles.text1}>Data Lokasi</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('gps')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <FontAwesomeIcon icon={faSignOut} size={20} color='#000' style={styles.icon1}/>
             </TouchableOpacity>
           </View>
-          <View>
-          </View>
+          <TextInput style={styles.input1} 
+            placeholder="Search Shop"
+          > 
+          </TextInput>
           </View>
           <ScrollView style={styles.scroll}>
           <View style={styles.content}>
-            <Text style={styles.text2}>Total Data: </Text>
           <View style={styles.card2}>
           <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
           <View style={{flexDirection:'row'}}>
@@ -118,18 +120,11 @@ export default function Dashboard2({navigation}) {
             </Text>
             </TouchableOpacity>
           </View>
-          
           </View>
           </ScrollView>
-          <TouchableOpacity onPress={() => navigation.navigate('')} style={styles.floatingButton}>
-          <FontAwesomeIcon icon={faLocationCrosshairs} size={25} color='white' style={styles.icon3}/>
-        </TouchableOpacity>
-          
-          
-
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -153,16 +148,10 @@ const styles = StyleSheet.create({
       marginBottom: 70,
       marginRight: 20
     },
-    icon3: {
-      color: 'white',
-      fontSize: 35,
-      fontWeight: 'bold',
-      alignSelf: 'center'
-    },
     text1: {
         fontSize: 23,
         color: 'black',
-        marginLeft: 138,
+        marginLeft: 20,
         padding: 23,
         marginTop: 30
     },
@@ -183,7 +172,7 @@ const styles = StyleSheet.create({
     card1: {
       alignSelf: 'center',
       width: 420,
-      height: 120,
+      height: 200,
       backgroundColor: 'white',
       borderRadius: 10,
       shadowColor: '#000',
@@ -207,11 +196,26 @@ const styles = StyleSheet.create({
       marginTop: 5
     },
     icon1: {
-      marginLeft: 75,
+      marginLeft: 180,
       marginTop: 58
     },
     icon2: {
       marginTop: 30,
       marginLeft: 30
-    }
+    },
+    icon3: {
+      color: 'white',
+      fontSize: 35,
+      fontWeight: 'bold',
+      alignSelf: 'center'
+    },
+    input1: {
+      alignSelf: 'center',
+      backgroundColor: '#efefef',
+      width: 360,
+      height: 50,
+      borderRadius: 10,
+      padding: 15,
+      
+    },
 });

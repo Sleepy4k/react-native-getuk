@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {  Linking as ReactNativeLinking } from 'react-native';
 import { faArrowLeft, faLocation, faLocationArrow, faLocationCrosshairs, faLocationPin, faLocationPinLock, faStar } from '@fortawesome/free-solid-svg-icons';
 import {
   Text,
@@ -14,6 +15,25 @@ import {
 } from 'react-native';
 
 export default function DetailAdmin({navigation}) {
+  const [rating, setRating] = useState(0);
+
+  const handleChooseImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync();
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const handleSave = () => {
+    // Implementasi penyimpanan data (misalnya: kirim ke server atau menyimpan lokal)
+    console.log('Data tersimpan:', {
+      rating,
+    });
+
+    // Navigasi kembali ke Dashboard1
+    navigation.navigate('Dashboard1');
+  };
     return(
         <View style={styles.container}>
             <View style={styles.nav}>
@@ -26,16 +46,26 @@ export default function DetailAdmin({navigation}) {
             <View style={styles.card1}>
             <View style={{flexDirection:'row'}}>
                 <Text style={styles.text2}>Pusat Getuk Goreng Tela Asli Sokaraja</Text>
-                <FontAwesomeIcon icon={faStar} size={13} color='#000' style={styles.icon2}/>
-                <Text style={styles.text3}>4</Text>
             </View>
             <Text style={[styles.text4, { opacity: 0.6 }]}>Jl.Jend.Sudirman,No.155,Sokaraja Tengah,Dusun 1,
                 Sokaraja Kulon,Kec.Banyumas, Kabupaten Banyumas, Jawa tengah 53181
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Dashboard1')}>
-            <FontAwesomeIcon icon={faLocationArrow} size={27} color='#000' style={styles.icon3}/>
+            <TouchableOpacity onPress={() => ReactNativeLinking.openURL('https://maps.app.goo.gl/QCxuWCRFPgG7aXf68')}>
+            <FontAwesomeIcon icon={faLocationArrow} size={30} color='#000' style={styles.icon3}/>
             </TouchableOpacity>
+            <Text style={{ opacity: 0.6, fontSize: 12, alignSelf: 'center', marginTop: 10}}>Press the icon to see the location</Text>
             </View>
+            <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+        {[1, 2, 3, 4, 5].map((star) => (
+          <FontAwesomeIcon
+            key={star}
+            icon={faStar}
+            size={27}
+            color={star <= rating ? '#000' : '#ccc'}
+            style={styles.icon2}
+          />
+        ))}
+      </View>
             <View style={{flexDirection:'row', alignSelf: 'center'}}>
             <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
             <View style={styles.button1}>
@@ -73,7 +103,7 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
       button1: {
-        marginTop: 100,
+        marginTop: 15,
         width: 100,
         height: 40,
         backgroundColor: 'green',
@@ -81,7 +111,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
       },
       button2: {
-        marginTop: 100,
+        marginTop: 15,
         width: 100,
         height: 40,
         backgroundColor: 'red',
@@ -91,7 +121,7 @@ const styles = StyleSheet.create({
     card1: {
         alignSelf: 'center',
         width: 390,
-        height: 200,
+        height: 240,
         backgroundColor: 'white',
         marginTop: 30,
         borderRadius: 10,
@@ -102,8 +132,9 @@ const styles = StyleSheet.create({
         marginRight: 30
     },
     icon2: {
-        marginTop: 15,
-        marginLeft: 30
+        alignSelf: 'center',
+        padding: 10,
+        margin: 20,
         
     },
     icon3: {

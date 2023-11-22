@@ -52,7 +52,7 @@ export default function Add({ navigation }) {
       />
       <TextInput
         style={styles.input2}
-        placeholder="Location"
+        placeholder="Link Google Maps"
         value={location}
         onChangeText={(text) => setLocation(text)}
       />
@@ -70,9 +70,6 @@ export default function Add({ navigation }) {
           <Text style={styles.text2}>Choose Image</Text>
         </View>
       </TouchableOpacity>
-      <View style={styles.caard3}>
-
-      </View>
       <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
         {[1, 2, 3, 4, 5].map((star) => (
           <FontAwesomeIcon

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TouchableOpacity, Linking as ReactNativeLinking } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft, faLocation, faLocationArrow, faLocationCrosshairs, faLocationPin, faLocationPinLock, faStar } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -8,7 +9,6 @@ import {
   Image,
   Button,
   TextInput,
-  TouchableOpacity,
   SocialIcon,
   ImageBackground,   
 } from 'react-native';
@@ -17,7 +17,7 @@ export default function Detail({navigation}) {
     return(
         <View style={styles.container}>
             <View style={styles.nav}>
-            <TouchableOpacity onPress={() => navigation.navigate('Dashboard1')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Dashboard2')}>
                 <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1}/>
             </TouchableOpacity>
                 <Text style={styles.text1}>Detail</Text>
@@ -32,12 +32,11 @@ export default function Detail({navigation}) {
             <Text style={[styles.text4, { opacity: 0.6 }]}>Jl.Jend.Sudirman,No.155,Sokaraja Tengah,Dusun 1,
                 Sokaraja Kulon,Kec.Banyumas, Kabupaten Banyumas, Jawa tengah 53181
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Dashboard1')}>
-            <FontAwesomeIcon icon={faLocationArrow} size={27} color='#000' style={styles.icon3}/>
+            <TouchableOpacity onPress={() => ReactNativeLinking.openURL('https://maps.app.goo.gl/QCxuWCRFPgG7aXf68')}>
+            <FontAwesomeIcon icon={faLocationArrow} size={30} color='#000' style={styles.icon3}/>
             </TouchableOpacity>
+            <Text style={{ opacity: 0.6, fontSize: 12, alignSelf: 'center', marginTop: 10}}>Press the icon to see the location</Text>
             </View>
-            
-
         </View>
     )
 }
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
     card1: {
         alignSelf: 'center',
         width: 390,
-        height: 200,
+        height: 270,
         backgroundColor: 'white',
         marginTop: 30,
         borderRadius: 10,
@@ -80,7 +79,8 @@ const styles = StyleSheet.create({
     icon3: {
         alignSelf: 'center',
         padding: 10,
-        margin: 20
+        margin: 20,
+        marginTop: 30
     },
     text1: {
         fontSize: 23,
