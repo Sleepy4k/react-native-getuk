@@ -145,17 +145,7 @@ export default function AddShop({ navigation }) {
         onChangeText={(text) => setAddress(text)}
       />
 
-      <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
-        <View style={styles.card2}>
-          {chosenImage ? (
-            <Image source={{ uri: chosenImage?.uri }} style={styles.image} />
-          ) : (
-            <Text style={styles.text2}>Choose Image</Text>
-          )}
-        </View>
-      </TouchableOpacity>
-
-      <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 15 }}>
+      <View style={[styles.input4, { flexDirection: 'row', alignSelf: 'center' }]}>
         {[1, 2, 3, 4, 5].map((star) => (
           <TouchableOpacity key={star} onPress={() => setStarRating(star)} disabled={loading}>
             <FontAwesomeIcon
@@ -168,6 +158,16 @@ export default function AddShop({ navigation }) {
           </TouchableOpacity>
         ))}
       </View>
+
+      <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
+        <View style={styles.card2}>
+          {chosenImage ? (
+            <Image source={{ uri: chosenImage?.uri }} style={styles.image} />
+          ) : (
+            <Text style={styles.text2}>Choose Image</Text>
+          )}
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

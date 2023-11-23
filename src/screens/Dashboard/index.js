@@ -62,6 +62,7 @@ export default function Dashboard({ navigation }) {
             <FontAwesomeIcon icon={faSignOut} size={20} color='#000' style={styles.icon1}/>
           </TouchableOpacity>
         </View>
+
         <TextInput style={styles.input1} placeholder="Search Shop" onChangeText={handleSearch}></TextInput>
       </View>
 

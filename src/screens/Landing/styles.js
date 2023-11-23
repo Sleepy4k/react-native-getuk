@@ -2,60 +2,59 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: 960,
+    height: '100%',
     backgroundColor: '#65d7cd'
   },
   card1: {
-    marginTop: 10,
-    backgroundColor: 'white',
-    height: 400,
-    width: 450,
+    height: '50%',
+    width: '100%',
     borderRadius: 50,
     alignSelf: 'center',
+    backgroundColor: 'white'
   },
   text1: {
+    padding: 25,
     fontSize: 20,
     color: 'black',
-    alignSelf: 'center',
-    padding: 30,
+    marginTop: '2%',
     fontWeight: 'bold',
-    marginTop: 10
+    alignSelf: 'center'
   },
   text2: {
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   text3: {
-    color: 'white',
+    margin: 10,
     fontSize: 18,
-    alignSelf: 'center',
-    margin: 10
+    color: 'white',
+    alignSelf: 'center'
   },
   button: {
-    alignSelf: 'center',
-    backgroundColor: '#ff7953',
-    width: 360,
-    height: 50,
+    width: '85%',
+    height: '10%',
+    marginTop: '7%',
     borderRadius: 25,
-    marginTop: 35,
+    alignSelf: 'center',
+    backgroundColor: '#ff7953'
   },
   image: {
-    width: 250,
-    height: 250,
-    alignSelf: 'center',
-    marginTop: 60
+    width: '65%',
+    height: '45%',
+    marginTop: '20%',
+    alignSelf: 'center'
   },
   headtext: {
+    marginTop: '20%',
     alignSelf: 'center',
-    flexDirection:'row',
-    marginTop: 150
+    flexDirection:'row'
   },
   headtext1: {
     fontSize: 30,
-    color: 'white',
+    color: 'white'
   },
   headtext2: {
-    marginLeft: 10,
     fontSize: 30,
+    marginLeft: '2%',
     color: '#ff7953'
   }
 });

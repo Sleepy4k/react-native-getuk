@@ -3,77 +3,58 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    backgroundColor: '#efefef',
+    backgroundColor: '#efefef'
   },
   card1: {
-    marginTop: 5,
-    backgroundColor: 'white',
-    height: 800,
-    width: 450,
+    width: '100%',
+    height: '75%',
+    marginTop: '5%',
     borderRadius: 50,
     alignSelf: 'center',
+    backgroundColor: 'white'
   },
   text1: {
+    padding: 40,
     fontSize: 30,
     color: 'black',
-    alignSelf: 'center',
-    padding: 40,
+    marginTop: '10%',
     fontWeight: 'bold',
-    marginTop: 50
+    alignSelf: 'center'
   },
   text2: {
+    padding: 30,
     fontSize: 20,
     color: 'black',
-    alignSelf: 'center',
-    padding: 30,
+    marginTop: '5%',
     fontWeight: 'bold',
-    marginTop: 2
+    alignSelf: 'center'
   },
   text3: {
-    color: 'white',
+    margin: 10,
     fontSize: 18,
-    alignSelf: 'center',
-    margin: 10
+    color: 'white',
+    alignSelf: 'center'
   },
-  input1: {
-    alignSelf: 'center',
-    backgroundColor: '#efefef',
-    width: 360,
-    height: 50,
+  input: {
+    width: '85%',
+    height: '8%',
+    padding: '3%',
     borderRadius: 10,
-    padding: 15,
-    
-  },
-  input2: {
     alignSelf: 'center',
-    backgroundColor: '#efefef',
-    width: 360,
-    height: 50,
-    borderRadius: 10,
-    padding: 15,
-    margin: 5,
-    marginTop: 20
+    backgroundColor: '#efefef'
   },
   error: {
     color: 'red',
-    alignSelf: 'center',
-    marginTop: 5
+    marginTop: '3%',
+    alignSelf: 'center'
   },
-  button1: {
-    alignSelf: 'center',
-    backgroundColor: '#ff7953',
-    width: 360,
-    height: 50,
+  button: {
+    width: '85%',
+    height: '7%',
+    marginTop: '3%',
     borderRadius: 25,
-    marginTop: 20
-  },
-  button2: {
     alignSelf: 'center',
-    backgroundColor: '#ff7953',
-    width: 360,
-    height: 50,
-    borderRadius: 25,
-    margin: 20
+    backgroundColor: '#ff7953'
   }
 });
 

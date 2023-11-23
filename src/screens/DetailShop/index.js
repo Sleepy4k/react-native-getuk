@@ -88,7 +88,7 @@ export default function DetailShop({ route, navigation }) {
         <Text style={styles.text1}>Detail</Text>
       </View>
 
-      <ScrollView>
+      <ScrollView style={{ flex: 1 }}>
         <Image style={styles.Image} source={image}/>
 
         <RenderStore store={store} />

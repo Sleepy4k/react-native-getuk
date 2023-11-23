@@ -2,20 +2,20 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: 960,
+    height: '100%',
     backgroundColor: 'white'
   },
   scroll: {
     flex: 1
   },
   floatingButton: {
-    width: 60,
-    height: 60,
-    bottom: 35,
-    right: 20,
-    marginRight: 20,
+    right: '5%',
+    width: '10%',
+    height: '6%',
+    bottom: '5%',
     borderRadius: 50,
-    marginBottom: 70,
+    marginRight: '6%',
+    marginBottom: '2%',
     alignItems: 'center',
     position: 'absolute',
     justifyContent: 'center',
@@ -28,33 +28,33 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   text1: {
-    padding: 23,
     fontSize: 23,
-    marginTop: 30,
+    padding: '6%',
     color: 'black',
-    marginLeft: 20
+    marginTop: '5%',
+    marginLeft: '5%'
   },
   text2: {
-    padding: 10,
+    padding: '3%',
     fontSize: 15
   },
   text3: {
     fontSize: 18,
-    marginTop: 20,
-    marginLeft: 20
+    marginTop: '6%',
+    marginLeft: '5%'
   },
   text4: {
     padding: 10,
-    marginTop: -20,
-    marginLeft: 70
+    marginTop: '-4%',
+    marginLeft: '17%'
   },
   card1: {
-    width: 420,
-    height: 200,
-    elevation: 5,
-    borderRadius: 10,
+    elevation: 8,
+    width: '100%',
+    height: '22%',
     shadowRadius: 4,
-    marginBottom: 20,
+    borderRadius: 10,
+    marginBottom: '2%',
     shadowOpacity: 0.3,
     shadowColor: '#000',
     alignSelf: 'center',
@@ -65,10 +65,10 @@ const styles = StyleSheet.create({
     }
   },
   card2: {
-    width: 420,
-    height: 110,
-    marginTop: 5,
     elevation: 5,
+    width: '100%',
+    height: '75%',
+    marginTop: '3%',
     shadowRadius: 4,
     borderRadius: 10,
     shadowOpacity: 0.5,
@@ -81,16 +81,16 @@ const styles = StyleSheet.create({
     }
   },
   icon1: {
-    marginTop: 58,
-    marginLeft: 160
+    marginTop: '19%',
+    marginLeft: '60%',
   },
   icon2: {
-    marginTop: 30,
-    marginLeft: 30
+    marginTop: '7%',
+    marginLeft: '7%'
   },
   input1: {
-    width: 360,
-    height: 50,
+    width: '87%',
+    height: '25%',
     padding: 15,
     borderRadius: 10,
     alignSelf: 'center',

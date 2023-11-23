@@ -23,17 +23,19 @@ export default function Landing({ navigation }) {
 
   const translateY = slideAnim.interpolate({
     inputRange: [0, 3],
-    outputRange: [100, 0],
+    outputRange: [35, 0],
   });
 
   return(
     <SafeAreaView style={styles.container}>
-      <View style={styles.headtext}>
-        <Text style={styles.headtext1}>Getuk Goreng</Text>
-        <Text style={styles.headtext2}>Sokaraja</Text>
-      </View>
+      <View>
+        <View style={styles.headtext}>
+          <Text style={styles.headtext1}>Getuk Goreng</Text>
+          <Text style={styles.headtext2}>Sokaraja</Text>
+        </View>
 
-      <Image style={styles.image} source={LogoGetuk}/>
+        <Image style={styles.image} source={LogoGetuk}/>
+      </View>
 
       <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
         <Text style={styles.text1}>Lokasi Toko Getuk Sokaraja</Text>
