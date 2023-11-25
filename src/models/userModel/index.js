@@ -35,6 +35,11 @@ export const findUser = async (email) => {
 }
 
 export const createUser = async (data) => {
+  if (!data) return null;
+
+  const isUserAlreadyExists = await findUser(data.email);
+  if (isUserAlreadyExists) return null;
+
   const docRef = await addDoc(collection(db, "users"), data);
   const docSnap = await getDoc(docRef);
 
