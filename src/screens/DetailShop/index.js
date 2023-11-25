@@ -56,7 +56,7 @@ export default function DetailShop({ route, navigation }) {
           <Text style={styles.text1}>Detail</Text>
         </View>
 
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
           <Image style={styles.Image} source={image}/>
 
           <View style={styles.card1}>

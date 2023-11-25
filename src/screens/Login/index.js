@@ -33,7 +33,7 @@ export default function Login({ navigation }) {
 
   const translateY = slideAnim.interpolate({
     inputRange: [0, 3],
-    outputRange: [450, 0],
+    outputRange: [85, 0],
   });
 
   const handleChange = (name, value) => {
@@ -97,7 +97,7 @@ export default function Login({ navigation }) {
         <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
           <Text style={styles.text2}>Login Untuk Masuk Sistem</Text>
 
-          <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
+          <ScrollView style={{ flex: 1 }}>
             <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
 
             <TextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />

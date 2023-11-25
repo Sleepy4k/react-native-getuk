@@ -129,7 +129,7 @@ export default function AddShop({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
           <TextInput
             style={styles.input}
             placeholder="Shop Name"

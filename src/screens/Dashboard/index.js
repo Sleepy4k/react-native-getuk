@@ -67,7 +67,7 @@ export default function Dashboard({ navigation }) {
           <TextInput style={styles.input1} placeholder="Search Shop" onChangeText={handleSearch}></TextInput>
         </View>
 
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }} refreshControl={
+        <ScrollView style={{ flex: 1 }} refreshControl={
           <RefreshControl
             refreshing={false}
             onRefresh={handleRefresh}

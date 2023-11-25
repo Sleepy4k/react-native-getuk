@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: responsive.widthPercentageToDP('100%'),
     height: responsive.heightPercentageToDP('45%'),
-    marginTop: responsive.heightPercentageToDP('5%')
+    marginTop: responsive.heightPercentageToDP('30%')
   },
   text1: {
     padding: '10%',

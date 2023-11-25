@@ -34,7 +34,7 @@ export default function Login({ navigation }) {
 
   const translateY = slideAnim.interpolate({
     inputRange: [0, 3],
-    outputRange: [450, 0],
+    outputRange: [85, 0],
   });
 
   const handleChange = (name, value) => {
