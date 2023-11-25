@@ -9,6 +9,7 @@ import {
   Animated,
   Keyboard,
   TextInput,
+  ScrollView,
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
@@ -32,7 +33,7 @@ export default function Login({ navigation }) {
 
   const translateY = slideAnim.interpolate({
     inputRange: [0, 3],
-    outputRange: [350, 0],
+    outputRange: [450, 0],
   });
 
   const handleChange = (name, value) => {
@@ -89,24 +90,28 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text1}>Login</Text>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Text style={styles.text1}>Login</Text>
 
-      <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
-        <Text style={styles.text2}>Login Untuk Masuk Sistem</Text>
+        <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
+          <Text style={styles.text2}>Login Untuk Masuk Sistem</Text>
 
-        <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
+          <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
+            <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
 
-        <TextInput style={[styles.input, { marginTop: '3%' }]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />
+            <TextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />
 
-        <TouchableOpacity onPress={validate} style={[styles.button, { marginTop: '5%' }]} disabled={loading}>
-          <Text style={styles.text3}>Masuk</Text>
-        </TouchableOpacity>
+            <TouchableOpacity onPress={validate} style={[styles.button, styles.buttonEntry]} disabled={loading}>
+              <Text style={styles.text3}>Masuk</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.replace('Register')} style={styles.button} disabled={loading}>
-          <Text style={styles.text3}>Daftar</Text>
-        </TouchableOpacity>
-      </Animated.View>
+            <TouchableOpacity onPress={() => navigation.replace('Register')} style={styles.button} disabled={loading}>
+              <Text style={styles.text3}>Daftar</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </Animated.View>
+      </View>
     </SafeAreaView>
   )
 }

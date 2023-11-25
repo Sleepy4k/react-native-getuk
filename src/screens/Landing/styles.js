@@ -1,61 +1,63 @@
+import { responsive } from '@helpers';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: '#65d7cd'
+    backgroundColor: '#65d7cd',
+    height: responsive.heightPercentageToDP('100%')
   },
   card1: {
-    height: '50%',
-    width: '100%',
     borderRadius: 50,
     alignSelf: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('100%'),
+    height: responsive.heightPercentageToDP('30%'),
+    marginTop: responsive.heightPercentageToDP('9%')
   },
   text1: {
-    padding: 25,
-    fontSize: 20,
+    padding: '5%',
     color: 'black',
-    marginTop: '2%',
     fontWeight: 'bold',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(20),
+    marginTop: responsive.heightPercentageToDP('2%')
   },
   text2: {
     alignSelf: 'center'
   },
   text3: {
-    margin: 10,
-    fontSize: 18,
+    margin: '2.5%',
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(18)
   },
   button: {
-    width: '85%',
-    height: '10%',
-    marginTop: '7%',
     borderRadius: 25,
     alignSelf: 'center',
-    backgroundColor: '#ff7953'
+    backgroundColor: '#ff7953',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('5%'),
+    marginTop: responsive.heightPercentageToDP('4%')
   },
   image: {
-    width: '65%',
-    height: '45%',
-    marginTop: '20%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    width: responsive.widthPercentageToDP('75%'),
+    height: responsive.heightPercentageToDP('35%'),
+    marginTop: responsive.heightPercentageToDP('10%')
   },
   headtext: {
-    marginTop: '20%',
     alignSelf: 'center',
-    flexDirection:'row'
+    flexDirection: 'row',
+    marginTop: responsive.heightPercentageToDP('8%')
   },
   headtext1: {
-    fontSize: 30,
-    color: 'white'
+    color: 'white',
+    fontSize: responsive.scaleFontSize(28),
   },
   headtext2: {
-    fontSize: 30,
-    marginLeft: '2%',
-    color: '#ff7953'
+    color: '#ff7953',
+    fontSize: responsive.scaleFontSize(28),
+    marginLeft: responsive.widthPercentageToDP('2%')
   }
 });
 

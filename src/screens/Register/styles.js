@@ -1,60 +1,62 @@
+import { responsive } from '@helpers';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: '#efefef'
+    backgroundColor: '#efefef',
+    height: responsive.heightPercentageToDP('100%')
   },
   card1: {
-    width: '100%',
-    height: '75%',
-    marginTop: '5%',
     borderRadius: 50,
     alignSelf: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('100%'),
+    height: responsive.heightPercentageToDP('45%'),
+    marginTop: responsive.heightPercentageToDP('5%')
   },
   text1: {
-    padding: 40,
-    fontSize: 30,
+    padding: '10%',
     color: 'black',
-    marginTop: '10%',
     fontWeight: 'bold',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(30),
+    marginTop: responsive.heightPercentageToDP('5%')
   },
   text2: {
-    padding: 30,
-    fontSize: 20,
+    padding: '5%',
     color: 'black',
-    marginTop: '5%',
     fontWeight: 'bold',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(20),
+    marginTop: responsive.heightPercentageToDP('2%')
   },
   text3: {
-    margin: 10,
-    fontSize: 18,
+    margin: '2%',
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(18)
   },
   input: {
-    width: '85%',
-    height: '8%',
     padding: '3%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#efefef'
+    backgroundColor: '#efefef',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('6%')
   },
-  error: {
-    color: 'red',
-    marginTop: '3%',
-    alignSelf: 'center'
+  inputPassword: {
+    marginTop: responsive.heightPercentageToDP('2%')
   },
   button: {
-    width: '85%',
-    height: '7%',
-    marginTop: '3%',
     borderRadius: 25,
     alignSelf: 'center',
-    backgroundColor: '#ff7953'
+    backgroundColor: '#ff7953',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('5%'),
+    marginTop: responsive.heightPercentageToDP('2%')
+  },
+  buttonEntry: {
+    marginTop: responsive.heightPercentageToDP('2%')
   }
 });
 

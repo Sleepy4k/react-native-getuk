@@ -26,44 +26,11 @@ const handleDelete = async (id, navigation) => {
   }
 }
 
-const RenderStore = ({ store }) => {
-  if (!store) return notification('store not found', 'Error');
-
-  return (
-    <View>
-      <View style={styles.card1}>
-        <View style={{flexDirection:'row'}}>
-          <Text style={styles.text2}>{store.name}</Text>
-        </View>
-
-        <Text style={[styles.text4, { opacity: 0.6 }]}>
-          {store.address}
-        </Text>
-
-        <TouchableOpacity onPress={() => Linking.openURL(store.location)}>
-          <FontAwesomeIcon icon={faLocationArrow} size={30} color='#000' style={styles.icon3} />
-        </TouchableOpacity>
-
-        <Text style={{ opacity: 0.6, fontSize: 12, alignSelf: 'center', marginTop: 10}}>Press the icon to see the location</Text>
-      </View>
-
-      <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <FontAwesomeIcon
-            key={star}
-            icon={faStar}
-            size={27}
-            color={star <= store.rating ? '#000' : '#ccc'}
-            style={styles.icon2}
-          />
-        ))}
-      </View>
-    </View>
-  )
-}
-
 export default function DetailShop({ route, navigation }) {
   const { store } = route.params.param;
+
+  if (!store) return notification('store not found', 'Error');
+
   const { userData } = React.useContext(AuthContext);
   const [image, setImage] = React.useState(LogoGetukDetail);
 
@@ -79,36 +46,64 @@ export default function DetailShop({ route, navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.nav}>
-        <TouchableOpacity onPress={() => navigation.replace('Dashboard')}>
-          <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
-        </TouchableOpacity>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.nav}>
+          <TouchableOpacity onPress={() => navigation.replace('Dashboard')}>
+            <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
+          </TouchableOpacity>
 
-        <Text style={styles.text1}>Detail</Text>
-      </View>
+          <Text style={styles.text1}>Detail</Text>
+        </View>
 
-      <ScrollView style={{ flex: 1 }}>
-        <Image style={styles.Image} source={image}/>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
+          <Image style={styles.Image} source={image}/>
 
-        <RenderStore store={store} />
+          <View style={styles.card1}>
+            <View style={{flexDirection:'row'}}>
+              <Text style={styles.text2}>{store.name}</Text>
+            </View>
 
-        {userData && userData?.role == 'admin' && (
-          <View style={{flexDirection:'row', alignSelf: 'center'}}>
-            <TouchableOpacity onPress={() => navigation.navigate('EditShop', { param: { store: store } })}>
-              <View style={styles.button1}>
-                <Text style={styles.text5}>Edit</Text>
-              </View>
+            <Text style={[styles.text3, { opacity: 0.6 }]}>
+              {store.address}
+            </Text>
+
+            <TouchableOpacity onPress={() => Linking.openURL(store.location)}>
+              <FontAwesomeIcon icon={faLocationArrow} size={30} color='#000' style={styles.icon2} />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => handleDelete(store.id, navigation)}>
-              <View style={styles.button2}>
-                <Text style={styles.text5}>Delete</Text>
-              </View>
-            </TouchableOpacity>
+            <Text style={styles.mapHelperText}>Press the icon to see the location</Text>
           </View>
-        )}
-      </ScrollView>
+
+          <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 10 }}>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FontAwesomeIcon
+                key={star}
+                icon={faStar}
+                size={27}
+                color={star <= store.rating ? '#000' : '#ccc'}
+                style={styles.icon2}
+              />
+            ))}
+          </View>
+
+          {userData && userData?.role == 'admin' && (
+            <View style={{flexDirection:'row', alignSelf: 'center'}}>
+              <TouchableOpacity onPress={() => navigation.navigate('EditShop', { param: { store: store } })}>
+                <View style={[styles.button, { backgroundColor: 'green' }]}>
+                  <Text style={styles.text5}>Edit</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => handleDelete(store.id, navigation)}>
+                <View style={[styles.button, { backgroundColor: 'red' }]}>
+                  <Text style={styles.text5}>Delete</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          )}
+        </ScrollView>
+      </View>
     </SafeAreaView>
   )
 }

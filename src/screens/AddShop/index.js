@@ -11,6 +11,7 @@ import {
   Image,
   Keyboard,
   TextInput,
+  ScrollView,
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
@@ -19,7 +20,7 @@ export default function AddShop({ navigation }) {
   const [address, setAddress] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [location, setLocation] = React.useState(null);
-  const [starRating, setStarRating] = React.useState(null);
+  const [starRating, setStarRating] = React.useState(0);
   const [chosenImage, setChosenImage] = React.useState(null);
   const [locationName, setLocationName] = React.useState(null);
 
@@ -103,71 +104,81 @@ export default function AddShop({ navigation }) {
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  const handleStarRating = (star) => {
+    if (starRating === star) {
+      setStarRating(0);
+    } else {
+      setStarRating(star);
+    }
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.nav}>
-        <TouchableOpacity onPress={() => navigation.replace('Dashboard')}>
-          <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
-        </TouchableOpacity>
-
-        <Text style={styles.text1}>Add Shop</Text>
-
-        <TouchableOpacity onPress={validate}>
-          <Text style={styles.text3}>Save</Text>
-        </TouchableOpacity>
-      </View>
-
-      <TextInput
-        style={styles.input1}
-        placeholder="Shop Name"
-        value={locationName}
-        editable={!loading}
-        onChangeText={(text) => setLocationName(text)}
-      />
-
-      <TextInput
-        style={styles.input2}
-        placeholder="Link Google Maps"
-        value={location}
-        editable={!loading}
-        onChangeText={(text) => setLocation(text)}
-      />
-
-      <TextInput
-        style={styles.input3}
-        placeholder="Address"
-        multiline={true}
-        numberOfLines={4}
-        value={address}
-        editable={!loading}
-        onChangeText={(text) => setAddress(text)}
-      />
-
-      <View style={[styles.input4, { flexDirection: 'row', alignSelf: 'center' }]}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <TouchableOpacity key={star} onPress={() => setStarRating(star)} disabled={loading}>
-            <FontAwesomeIcon
-              key={star}
-              icon={faStar}
-              size={27}
-              color={star <= starRating ? '#000' : '#ccc'}
-              style={styles.icon2}
-            />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.nav}>
+          <TouchableOpacity onPress={() => navigation.replace('Dashboard')}>
+            <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
           </TouchableOpacity>
-        ))}
-      </View>
 
-      <TouchableOpacity onPress={handleChooseImage} disabled={loading}>
-        <View style={styles.card2}>
-          {chosenImage ? (
-            <Image source={{ uri: chosenImage?.uri }} style={styles.image} />
-          ) : (
-            <Text style={styles.text2}>Choose Image</Text>
-          )}
+          <Text style={styles.text1}>Add Shop</Text>
+
+          <TouchableOpacity onPress={validate} disabled={loading}>
+            <Text style={styles.text3}>Save</Text>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
+          <TextInput
+            style={styles.input}
+            placeholder="Shop Name"
+            value={locationName}
+            editable={!loading}
+            onChangeText={(text) => setLocationName(text)}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Link Google Maps"
+            value={location}
+            editable={!loading}
+            onChangeText={(text) => setLocation(text)}
+          />
+
+          <TextInput
+            style={[styles.input, styles.description]}
+            placeholder="Address"
+            multiline={true}
+            numberOfLines={4}
+            value={address}
+            editable={!loading}
+            onChangeText={(text) => setAddress(text)}
+          />
+
+          <TouchableOpacity style={styles.card2} onPress={handleChooseImage} disabled={loading}>
+            {chosenImage ? (
+              <Image source={{ uri: chosenImage?.uri }} style={styles.image} />
+            ) : (
+              <Text style={styles.text2}>Choose Image</Text>
+            )}
+          </TouchableOpacity>
+
+          <View style={[styles.star, { flexDirection: 'row', alignSelf: 'center' }]}>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <TouchableOpacity key={star} onPress={() => handleStarRating(star)} disabled={loading}>
+                <FontAwesomeIcon
+                  key={star}
+                  icon={faStar}
+                  size={27}
+                  color={star <= starRating ? '#000' : '#ccc'}
+                  style={styles.icon2}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }

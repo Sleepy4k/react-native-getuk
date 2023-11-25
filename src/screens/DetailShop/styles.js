@@ -1,97 +1,84 @@
+import { responsive } from '@helpers';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: '#efefef'
+    backgroundColor: '#efefef',
+    height: responsive.heightPercentageToDP('100%')
   },
   Image: {
-    width: 300,
-    height: 300,
-    marginTop: 20,
     shadowRadius: 4,
     borderRadius: 20,
     shadowOpacity: 0.5,
     shadowColor: '#000',
     alignSelf: 'center',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('30%'),
+    marginTop: responsive.heightPercentageToDP('2%'),
     shadowOffset: {
       width: 0,
       height: 2
     }
   },
-  button1: {
-    width: 100,
-    height: 40,
+  button: {
     margin: 50,
-    marginTop: 15,
     borderRadius: 10,
-    backgroundColor: 'green'
-  },
-  button2: {
-    width: 100,
-    height: 40,
-    margin: 50,
-    marginTop: 15,
-    borderRadius: 10,
-    backgroundColor: 'red'
+    width: responsive.widthPercentageToDP('25%'),
+    height: responsive.heightPercentageToDP('5%'),
+    marginTop: responsive.heightPercentageToDP('3%')
   },
   card1: {
-    width: 390,
-    height: 240,
-    marginTop: 30,
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('90%'),
+    marginTop: responsive.heightPercentageToDP('3%')
+  },
+  mapHelperText: {
+    opacity: 0.6,
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(12),
+    marginBottom: responsive.heightPercentageToDP('3%')
   },
   icon1: {
     padding: 10,
-    marginTop: 25,
-    marginRight: 30
+    marginTop: responsive.heightPercentageToDP('3%'),
+    marginLeft: responsive.widthPercentageToDP('5%'),
+    marginRight: responsive.widthPercentageToDP('3%')
   },
   icon2: {
     margin: 20,
     padding: 10,
     alignSelf: 'center'
   },
-  icon3: {
-    margin: 20,
-    padding: 10,
-    alignSelf: 'center'
-  },
   text1: {
     fontSize: 23,
-    marginTop: 20,
-    color: 'black'
+    color: 'black',
+    marginTop: responsive.heightPercentageToDP('2.3%')
   },
   text2: {
     padding: 11,
-    marginTop: 5,
-    fontSize: 18,
-    marginLeft: 5,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: responsive.scaleFontSize(18),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('1%')
   },
   text3: {
-    padding: 7,
-    fontSize: 15,
-    marginTop: 10
-  },
-  text4: {
     padding: 11,
-    fontSize: 15,
-    marginTop: -5,
-    marginLeft: 5
+    fontSize: responsive.scaleFontSize(15),
+    marginLeft: responsive.widthPercentageToDP('2%')
   },
   text5: {
     margin: 8,
-    fontSize: 18,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(18)
   },
   nav: {
     padding: 10,
-    marginTop: 30,
-    marginLeft: 15,
-    flexDirection:'row'
+    flexDirection:'row',
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('1%')
   }
 });
 

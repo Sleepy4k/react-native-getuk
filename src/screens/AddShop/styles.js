@@ -1,24 +1,25 @@
+import { responsive } from '@helpers';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: '#efefef'
+    backgroundColor: '#efefef',
+    height: responsive.heightPercentageToDP('100%')
   },
   card2: {
-    width: '85%',
-    height: '45%',
-    marginTop: '5%',
     borderRadius: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('30%'),
+    marginTop: responsive.heightPercentageToDP('3%')
   },
   icon1: {
-    padding: 10,
-    marginTop: '55%',
-    marginRight: '7%'
+    padding: '2%',
+    marginTop: responsive.heightPercentageToDP('3%'),
+    marginRight: responsive.widthPercentageToDP('5%')
   },
   icon2: {
     margin: '4%',
@@ -26,64 +27,49 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   text1: {
-    fontSize: 23,
-    marginTop: '5%',
-    color: 'black'
+    color: 'black',
+    fontSize: responsive.scaleFontSize(22),
+    marginTop: responsive.heightPercentageToDP('2%')
   },
   text2: {
-    fontSize: 23,
     color: 'black',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(22)
   },
   text3: {
-    fontSize: 23,
     color: 'green',
-    marginTop: '9%',
-    marginLeft: '50%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(22),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('30%')
   },
   nav: {
-    padding: 10,
-    marginTop: '7%',
-    marginLeft: '5%',
-    flexDirection: 'row'
+    padding: '5%',
+    flexDirection: 'row',
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('5%')
   },
-  input1: {
-    padding: 15,
-    width: '85%',
-    height: '6%',
-    marginTop: '5%',
+  input: {
+    padding: '3%',
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('6%'),
+    marginTop: responsive.heightPercentageToDP('3%')
   },
-  input2: {
-    padding: 15,
-    width: '85%',
-    height: '6%',
-    marginTop: '5%',
-    borderRadius: 10,
-    alignSelf: 'center',
-    backgroundColor: 'white'
+  description: {
+    textAlignVertical: 'top',
+    height: responsive.heightPercentageToDP('10%')
   },
-  input3: {
-    padding: 15,
-    width: '85%',
-    height: '10%',
-    marginTop: '5%',
-    borderRadius: 10,
-    alignSelf: 'center',
-    backgroundColor: 'white'
-  },
-  input4: {
-    marginTop: '5%',
-    marginBottom: '5%'
+  star: {
+    marginTop: responsive.heightPercentageToDP('5%'),
+    marginBottom: responsive.heightPercentageToDP('5%')
   },
   image: {
-    width: '85%',
-    height: '15%',
-    marginTop: '6%',
-    borderRadius: 10
+    borderRadius: 10,
+    width: responsive.widthPercentageToDP('75%'),
+    height: responsive.heightPercentageToDP('25%')
   }
 });
 

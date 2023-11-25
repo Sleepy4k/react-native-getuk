@@ -1,64 +1,63 @@
+import { responsive } from '@helpers';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: 'white'
-  },
-  scroll: {
-    flex: 1
+    backgroundColor: 'white',
+    height: responsive.heightPercentageToDP('100%')
   },
   floatingButton: {
-    right: '5%',
-    width: '10%',
-    height: '6%',
-    bottom: '5%',
     borderRadius: 50,
-    marginRight: '6%',
-    marginBottom: '2%',
     alignItems: 'center',
     position: 'absolute',
     justifyContent: 'center',
-    backgroundColor: '#ff7953'
+    backgroundColor: '#ff7953',
+    right: responsive.widthPercentageToDP('3%'),
+    width: responsive.widthPercentageToDP('13%'),
+    height: responsive.heightPercentageToDP('6%'),
+    bottom: responsive.heightPercentageToDP('3%'),
+    marginRight: responsive.widthPercentageToDP('6%'),
+    marginBottom: responsive.heightPercentageToDP('2%')
   },
   icon3: {
-    fontSize: 35,
     color: 'white',
     fontWeight: 'bold',
     alignSelf: 'center'
   },
   text1: {
-    fontSize: 23,
     padding: '6%',
     color: 'black',
-    marginTop: '5%',
-    marginLeft: '5%'
+    fontSize: responsive.scaleFontSize(20),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('3%')
   },
   text2: {
-    padding: '3%',
-    fontSize: 15
+    padding: '2%',
+    fontSize: responsive.scaleFontSize(15)
   },
   text3: {
-    fontSize: 18,
-    marginTop: '6%',
-    marginLeft: '5%'
+    fontSize: responsive.scaleFontSize(16),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('5%')
   },
   text4: {
-    padding: 10,
-    marginTop: '-4%',
-    marginLeft: '17%'
+    marginLeft: responsive.widthPercentageToDP('19%'),
+    marginTop: responsive.heightPercentageToDP('-1.5%')
+  },
+  shopBox: {
+    marginBottom: responsive.widthPercentageToDP('3%')
   },
   card1: {
     elevation: 8,
-    width: '100%',
-    height: '22%',
     shadowRadius: 4,
     borderRadius: 10,
-    marginBottom: '2%',
     shadowOpacity: 0.3,
     shadowColor: '#000',
     alignSelf: 'center',
     backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('100%'),
+    height: responsive.heightPercentageToDP('20%'),
+    marginBottom: responsive.widthPercentageToDP('3%'),
     shadowOffset: {
       width: 0,
       height: 2
@@ -66,35 +65,34 @@ const styles = StyleSheet.create({
   },
   card2: {
     elevation: 5,
-    width: '100%',
-    height: '75%',
-    marginTop: '3%',
     shadowRadius: 4,
     borderRadius: 10,
     shadowOpacity: 0.5,
     alignSelf: 'center',
     shadowColor: '#000',
     backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('100%'),
+    marginTop: responsive.heightPercentageToDP('2%'),
     shadowOffset: {
       width: 0,
       height: 2
     }
   },
   icon1: {
-    marginTop: '19%',
-    marginLeft: '60%',
+    marginLeft: responsive.widthPercentageToDP('40%'),
+    marginTop: responsive.heightPercentageToDP('5.5%'),
   },
   icon2: {
-    marginTop: '7%',
-    marginLeft: '7%'
+    marginTop: responsive.heightPercentageToDP('3%'),
+    marginLeft: responsive.widthPercentageToDP('7%')
   },
   input1: {
-    width: '87%',
-    height: '25%',
     padding: 15,
     borderRadius: 10,
     alignSelf: 'center',
-    backgroundColor: '#efefef'
+    backgroundColor: '#efefef',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('5%')
   }
 });
 
