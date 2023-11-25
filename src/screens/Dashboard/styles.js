@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginLeft: responsive.widthPercentageToDP('7%')
   },
   input1: {
-    padding: '3%',
+    padding: '2%',
     borderRadius: 10,
     alignSelf: 'center',
     backgroundColor: '#efefef',

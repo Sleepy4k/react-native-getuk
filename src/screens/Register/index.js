@@ -70,8 +70,13 @@ export default function Login({ navigation }) {
   const handleRegister = async () => {
     try {
       const user = await userModel.createUser(data);
-      await setLoggedIn(user);
-      navigation.replace('Dashboard');
+
+      if (user) {
+        await setLoggedIn(user);
+        navigation.replace('Dashboard');
+      } else {
+        notification('Email already exist', 'Error');
+      }
     } catch (error) {
       notification('Register error', 'Error');
       console.log('Register error', error);

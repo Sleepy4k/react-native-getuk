@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginLeft: responsive.widthPercentageToDP('2%')
   },
   text5: {
-    margin: 8,
+    margin: '6%',
     color: 'white',
     alignSelf: 'center',
     fontSize: responsive.scaleFontSize(18)
