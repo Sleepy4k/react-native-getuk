@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       setLogged(false);
       setIsAdmin(false);
       setUserData(null);
-      navigation.navigate("Landing");
+      navigation.replace("Landing");
     } catch (error) {
       console.log(`error while logout: ${error}`);
     }
