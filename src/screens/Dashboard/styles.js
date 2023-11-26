@@ -6,48 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: responsive.heightPercentageToDP('100%')
   },
-  floatingButton: {
-    borderRadius: 50,
-    alignItems: 'center',
-    position: 'absolute',
-    justifyContent: 'center',
-    backgroundColor: '#ff7953',
-    right: responsive.widthPercentageToDP('3%'),
-    width: responsive.widthPercentageToDP('13%'),
-    height: responsive.heightPercentageToDP('6%'),
-    bottom: responsive.heightPercentageToDP('3%'),
-    marginRight: responsive.widthPercentageToDP('6%'),
-    marginBottom: responsive.heightPercentageToDP('2%')
-  },
-  icon3: {
-    color: 'white',
-    fontWeight: 'bold',
-    alignSelf: 'center'
-  },
-  text1: {
-    padding: '6%',
-    color: 'black',
-    fontSize: responsive.scaleFontSize(20),
-    marginTop: responsive.heightPercentageToDP('2%'),
-    marginLeft: responsive.widthPercentageToDP('3%')
-  },
-  text2: {
-    padding: '2%',
-    fontSize: responsive.scaleFontSize(15)
-  },
-  text3: {
-    fontSize: responsive.scaleFontSize(16),
-    marginTop: responsive.heightPercentageToDP('2%'),
-    marginLeft: responsive.widthPercentageToDP('5%')
-  },
-  text4: {
-    marginLeft: responsive.widthPercentageToDP('19%'),
-    marginTop: responsive.heightPercentageToDP('-1.5%')
-  },
-  shopBox: {
-    marginBottom: responsive.widthPercentageToDP('3%')
-  },
-  card1: {
+  headerCard: {
     elevation: 8,
     shadowRadius: 4,
     borderRadius: 10,
@@ -63,7 +22,30 @@ const styles = StyleSheet.create({
       height: 2
     }
   },
-  card2: {
+  headerTitle: {
+    padding: '6%',
+    color: 'black',
+    fontSize: responsive.scaleFontSize(20),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('3%')
+  },
+  logoutIcon: {
+    marginLeft: responsive.widthPercentageToDP('40%'),
+    marginTop: responsive.heightPercentageToDP('5.5%'),
+  },
+  searchInput: {
+    padding: '2%',
+    borderRadius: 10,
+    alignSelf: 'center',
+    backgroundColor: '#efefef',
+    width: responsive.widthPercentageToDP('85%'),
+    height: responsive.heightPercentageToDP('5%')
+  },
+  totalData: {
+    padding: '2%',
+    fontSize: responsive.scaleFontSize(15)
+  },
+  shopCard: {
     elevation: 5,
     shadowRadius: 4,
     borderRadius: 10,
@@ -78,21 +60,39 @@ const styles = StyleSheet.create({
       height: 2
     }
   },
-  icon1: {
-    marginLeft: responsive.widthPercentageToDP('40%'),
-    marginTop: responsive.heightPercentageToDP('5.5%'),
+  shopBox: {
+    marginBottom: responsive.widthPercentageToDP('3%')
   },
-  icon2: {
+  locationIcon: {
     marginTop: responsive.heightPercentageToDP('3%'),
     marginLeft: responsive.widthPercentageToDP('7%')
   },
-  input1: {
-    padding: '2%',
-    borderRadius: 10,
-    alignSelf: 'center',
-    backgroundColor: '#efefef',
-    width: responsive.widthPercentageToDP('85%'),
-    height: responsive.heightPercentageToDP('5%')
+  shopName: {
+    fontSize: responsive.scaleFontSize(16),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('5%')
+  },
+  shopAddress: {
+    marginLeft: responsive.widthPercentageToDP('19%'),
+    marginTop: responsive.heightPercentageToDP('-1.5%')
+  },
+  floatingButton: {
+    borderRadius: 50,
+    alignItems: 'center',
+    position: 'absolute',
+    justifyContent: 'center',
+    backgroundColor: '#ff7953',
+    right: responsive.widthPercentageToDP('3%'),
+    width: responsive.widthPercentageToDP('13%'),
+    height: responsive.heightPercentageToDP('6%'),
+    bottom: responsive.heightPercentageToDP('3%'),
+    marginRight: responsive.widthPercentageToDP('6%'),
+    marginBottom: responsive.heightPercentageToDP('2%')
+  },
+  floatingIcon: {
+    color: 'white',
+    fontWeight: 'bold',
+    alignSelf: 'center'
   }
 });
 

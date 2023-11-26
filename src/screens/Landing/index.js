@@ -30,20 +30,20 @@ export default function Landing({ navigation }) {
     <SafeAreaView>
       <View style={styles.container}>
         <View>
-          <View style={styles.headtext}>
-            <Text style={styles.headtext1}>Getuk Goreng</Text>
-            <Text style={styles.headtext2}>Sokaraja</Text>
+          <View style={styles.appTitle}>
+            <Text style={styles.firstTitle}>Getuk Goreng</Text>
+            <Text style={styles.secondTitle}>Sokaraja</Text>
           </View>
 
           <Image style={styles.image} source={LogoGetuk}/>
         </View>
 
-        <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
-          <Text style={styles.text1}>Lokasi Toko Getuk Sokaraja</Text>
-          <Text style={styles.text2}>Temukan toko oleh getuk khas sokaraja di sekitarmu</Text>
+        <Animated.View style={[styles.landingCard, { transform: [{ translateY }] }]}>
+          <Text style={styles.landingTitle}>Lokasi Toko Getuk Sokaraja</Text>
+          <Text style={styles.landingDescription}>Temukan toko oleh getuk khas sokaraja di sekitarmu</Text>
 
           <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
-            <Text style={styles.text3}>Masuk</Text>
+            <Text style={styles.buttonText}>Masuk</Text>
           </TouchableOpacity>
         </Animated.View>
       </View>

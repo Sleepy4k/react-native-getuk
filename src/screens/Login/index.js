@@ -92,10 +92,10 @@ export default function Login({ navigation }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.text1}>Login</Text>
+        <Text style={styles.screenTitle}>Login</Text>
 
-        <Animated.View style={[styles.card1, { transform: [{ translateY }] }]}>
-          <Text style={styles.text2}>Login Untuk Masuk Sistem</Text>
+        <Animated.View style={[styles.formCard, { transform: [{ translateY }] }]}>
+          <Text style={styles.formTitle}>Login Untuk Masuk Sistem</Text>
 
           <ScrollView style={{ flex: 1 }}>
             <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
@@ -103,11 +103,11 @@ export default function Login({ navigation }) {
             <TextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />
 
             <TouchableOpacity onPress={validate} style={[styles.button, styles.buttonEntry]} disabled={loading}>
-              <Text style={styles.text3}>Masuk</Text>
+              <Text style={styles.buttonText}>Masuk</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('Register')} style={styles.button} disabled={loading}>
-              <Text style={styles.text3}>Daftar</Text>
+              <Text style={styles.buttonText}>Daftar</Text>
             </TouchableOpacity>
           </ScrollView>
         </Animated.View>

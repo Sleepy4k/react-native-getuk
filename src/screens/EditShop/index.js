@@ -144,18 +144,18 @@ export default function EditShop({ route, navigation }) {
       <View style={styles.container}>
         <View style={styles.nav}>
           <TouchableOpacity onPress={() => navigation.replace('DetailShop', { param: { store: param.store } })}>
-            <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.icon1} />
+            <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.backIcon} />
           </TouchableOpacity>
 
-          <Text style={styles.text1}>Edit Shop</Text>
+          <Text style={styles.screenTitle}>Edit Shop</Text>
 
           <TouchableOpacity onPress={validate} disabled={loading}>
-            <Text style={styles.text3}>Update</Text>
+            <Text style={styles.updateButton}>Update</Text>
           </TouchableOpacity>
         </View>
 
         <ScrollView style={{ flex: 1 }}>
-        <TextInput
+          <TextInput
             style={styles.input}
             placeholder="Shop Name"
             value={locationName}
@@ -172,7 +172,7 @@ export default function EditShop({ route, navigation }) {
           />
 
           <TextInput
-            style={[styles.input, styles.description]}
+            style={[styles.input, styles.inputDescription]}
             placeholder="Address"
             multiline={true}
             numberOfLines={4}
@@ -181,15 +181,15 @@ export default function EditShop({ route, navigation }) {
             onChangeText={(text) => setAddress(text)}
           />
 
-          <TouchableOpacity style={styles.card2} onPress={handleChooseImage} disabled={loading}>
+          <TouchableOpacity style={styles.imageCard} onPress={handleChooseImage} disabled={loading}>
             {chosenImage ? (
               <Image source={{ uri: chosenImage?.uri }} style={styles.image} />
             ) : (
-              <Text style={styles.text2}>Choose Image</Text>
+              <Text style={styles.chooseImage}>Choose Image</Text>
             )}
           </TouchableOpacity>
 
-          <View style={[styles.star, { flexDirection: 'row', alignSelf: 'center' }]}>
+          <View style={styles.starCard}>
             {[1, 2, 3, 4, 5].map((star) => (
               <TouchableOpacity key={star} onPress={() => handleStarRating(star)} disabled={loading}>
                 <FontAwesomeIcon
@@ -197,7 +197,7 @@ export default function EditShop({ route, navigation }) {
                   icon={faStar}
                   size={27}
                   color={star <= starRating ? '#000' : '#ccc'}
-                  style={styles.icon2}
+                  style={styles.starIcon}
                 />
               </TouchableOpacity>
             ))}

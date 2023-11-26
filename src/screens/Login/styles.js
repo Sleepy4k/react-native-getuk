@@ -6,15 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef',
     height: responsive.heightPercentageToDP('100%')
   },
-  card1: {
-    borderRadius: 50,
-    alignSelf: 'center',
-    backgroundColor: 'white',
-    width: responsive.widthPercentageToDP('100%'),
-    height: responsive.heightPercentageToDP('45%'),
-    marginTop: responsive.heightPercentageToDP('30%')
-  },
-  text1: {
+  screenTitle: {
     padding: '10%',
     color: 'black',
     fontWeight: 'bold',
@@ -22,19 +14,21 @@ const styles = StyleSheet.create({
     fontSize: responsive.scaleFontSize(30),
     marginTop: responsive.heightPercentageToDP('5%')
   },
-  text2: {
+  formCard: {
+    borderRadius: 50,
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    width: responsive.widthPercentageToDP('100%'),
+    height: responsive.heightPercentageToDP('45%'),
+    marginTop: responsive.heightPercentageToDP('30%')
+  },
+  formTitle: {
     padding: '5%',
     color: 'black',
     fontWeight: 'bold',
     alignSelf: 'center',
     fontSize: responsive.scaleFontSize(20),
     marginTop: responsive.heightPercentageToDP('2%')
-  },
-  text3: {
-    margin: '2%',
-    color: 'white',
-    alignSelf: 'center',
-    fontSize: responsive.scaleFontSize(18)
   },
   input: {
     padding: '3%',
@@ -57,6 +51,12 @@ const styles = StyleSheet.create({
   },
   buttonEntry: {
     marginTop: responsive.heightPercentageToDP('2%')
+  },
+  buttonText: {
+    margin: '2%',
+    color: 'white',
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(18)
   }
 });
 

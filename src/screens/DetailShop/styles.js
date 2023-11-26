@@ -6,7 +6,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef',
     height: responsive.heightPercentageToDP('100%')
   },
-  Image: {
+  nav: {
+    padding: '3%',
+    flexDirection:'row',
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('1%')
+  },
+  backIcon: {
+    padding: '3%',
+    marginTop: responsive.heightPercentageToDP('3%'),
+    marginLeft: responsive.widthPercentageToDP('5%'),
+    marginRight: responsive.widthPercentageToDP('3%')
+  },
+  screenTitle: {
+    color: 'black',
+    fontSize: responsive.scaleFontSize(23),
+    marginTop: responsive.heightPercentageToDP('2%')
+  },
+  imageCard: {
     shadowRadius: 4,
     borderRadius: 20,
     shadowOpacity: 0.5,
@@ -20,65 +37,60 @@ const styles = StyleSheet.create({
       height: 2
     }
   },
-  button: {
-    margin: 50,
-    borderRadius: 10,
-    width: responsive.widthPercentageToDP('25%'),
-    height: responsive.heightPercentageToDP('5%'),
-    marginTop: responsive.heightPercentageToDP('3%')
-  },
-  card1: {
+  shopCard: {
     borderRadius: 10,
     alignSelf: 'center',
     backgroundColor: 'white',
     width: responsive.widthPercentageToDP('90%'),
     marginTop: responsive.heightPercentageToDP('3%')
   },
-  mapHelperText: {
-    opacity: 0.6,
-    alignSelf: 'center',
-    fontSize: responsive.scaleFontSize(12),
-    marginBottom: responsive.heightPercentageToDP('3%')
-  },
-  icon1: {
-    padding: 10,
-    marginTop: responsive.heightPercentageToDP('3%'),
-    marginLeft: responsive.widthPercentageToDP('5%'),
-    marginRight: responsive.widthPercentageToDP('3%')
-  },
-  icon2: {
-    margin: 20,
-    padding: 10,
-    alignSelf: 'center'
-  },
-  text1: {
-    fontSize: 23,
-    color: 'black',
-    marginTop: responsive.heightPercentageToDP('2.3%')
-  },
-  text2: {
-    padding: 11,
+  shopTitle: {
+    padding: '3%',
     fontWeight: 'bold',
     fontSize: responsive.scaleFontSize(18),
     marginTop: responsive.heightPercentageToDP('2%'),
     marginLeft: responsive.widthPercentageToDP('1%')
   },
-  text3: {
-    padding: 11,
+  shopAddress: {
+    opacity: 0.6,
+    padding: '3%',
     fontSize: responsive.scaleFontSize(15),
     marginLeft: responsive.widthPercentageToDP('2%')
   },
-  text5: {
+  mapIcon: {
+    margin: '5%',
+    padding: '3%',
+    alignSelf: 'center'
+  },
+  mapDescription: {
+    opacity: 0.6,
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(12),
+    marginBottom: responsive.heightPercentageToDP('3%')
+  },
+  starCard: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    marginTop: responsive.heightPercentageToDP('3%')
+  },
+  starIcon: {
+    margin: '5%',
+    padding: '3%',
+    alignSelf: 'center'
+  },
+  button: {
+    margin: '10%',
+    borderRadius: 10,
+    width: responsive.widthPercentageToDP('25%'),
+    height: responsive.heightPercentageToDP('5%'),
+    marginLeft: responsive.widthPercentageToDP('9%'),
+    marginTop: responsive.heightPercentageToDP('3%')
+  },
+  buttonText: {
     margin: '6%',
     color: 'white',
     alignSelf: 'center',
     fontSize: responsive.scaleFontSize(18)
-  },
-  nav: {
-    padding: 10,
-    flexDirection:'row',
-    marginTop: responsive.heightPercentageToDP('2%'),
-    marginLeft: responsive.widthPercentageToDP('1%')
   }
 });
 
