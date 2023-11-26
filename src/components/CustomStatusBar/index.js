@@ -36,7 +36,7 @@ CustomStatusBar.defaultProps = {
   animated: true,
   translucent: false,
   barStyle: "dark-content",
-  backgroundColor: colors.lightDeepBlue,
+  backgroundColor: colors.white,
   networkActivityIndicatorVisible: false,
 };
 
