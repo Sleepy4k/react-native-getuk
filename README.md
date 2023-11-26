@@ -1,11 +1,54 @@
-# Sample Snack app
+# Getukan
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+~~~bash
+    Simple hybrid mobile app for find nearby getuk shop in our location, implement with firebase
+    make this app more powerfull, also powered by expo dev and expo go version 47
+~~~
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.io/get-started/installation).
+## Build Application
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+~~~bash
+    first, download eas cli version into your machine
+~~~
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io/c/snack).
+~~~bash
+    After installation process, run `eas login` command in your terminal
+~~~
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+~~~bash
+    Then follow step bellow for the next step
+~~~
+
+### Android
+
+~~~bash
+    run command `eas build`, then select android platform
+~~~
+
+~~~bash
+    Then press `Y` for generate keystore credential
+~~~
+
+### IOS
+
+~~~bash
+    run command `eas build`, then select ios platform
+~~~
+
+~~~bash
+    Then input your ios dev account credetials
+~~~
+
+### Web
+
+~~~bash
+    This project doesn't support web platform, if you want it
+    setup metro configuration for web platform
+~~~
+
+### Final
+
+~~~bash
+    Done, your project stored in expo.dev website
+    example: https://expo.dev/accounts/.../projects/.../...
+~~~
