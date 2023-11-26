@@ -4,10 +4,10 @@
     "slug": "getukan",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/images/icon.png",
+      "image": "./assets/images/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,9 +23,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/icon.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
+      "versionCode": 2,
       "package": "id.my.benjamin4k.getukan",
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -35,7 +36,7 @@
       ]
     },
     "web": {
-      "favicon": "./src/assets/images/icon.png"
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
       [
