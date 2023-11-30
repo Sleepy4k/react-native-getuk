@@ -39,9 +39,6 @@ export default function EditShop({ route, navigation }) {
   }, []);
 
   const handleChooseImage = async () => {
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permission.granted) return notification('permission required to access camera roll', 'Error');
-
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,

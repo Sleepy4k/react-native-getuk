@@ -25,9 +25,6 @@ export default function AddShop({ navigation }) {
   const [locationName, setLocationName] = React.useState(null);
 
   const handleChooseImage = async () => {
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permission.granted) return notification('permission required to access camera roll', 'Error');
-
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
