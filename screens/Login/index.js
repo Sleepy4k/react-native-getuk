@@ -1,29 +1,28 @@
-import React from 'react';
 import styles from './styles';
 import { userModel } from '@models';
+import { AuthLayout } from '@layouts';
 import { notification } from '@helpers';
 import { AuthContext } from '@contexts/AuthContext';
+import { useState, useEffect, useContext } from 'react';
 import {
   Text,
-  View,
   Animated,
   Keyboard,
   TextInput,
   ScrollView,
-  SafeAreaView,
   TouchableOpacity
 } from 'react-native';
 
 export default function Login({ navigation }) {
-  const [loading, setLoading] = React.useState(false);
-  const { setLoggedIn } = React.useContext(AuthContext);
-  const [slideAnim] = React.useState(new Animated.Value(0));
-  const [data, setData] = React.useState({
+  const [loading, setLoading] = useState(false);
+  const { setLoggedIn } = useContext(AuthContext);
+  const [slideAnim] = useState(new Animated.Value(0));
+  const [data, setData] = useState({
     email: '',
     password: ''
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     Animated.timing(slideAnim, {
       toValue: 1,
       duration: 1000,
@@ -90,28 +89,26 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text style={styles.screenTitle}>Login</Text>
+    <AuthLayout style={styles.container}>
+      <Text style={styles.screenTitle}>Login</Text>
 
-        <Animated.View style={[styles.formCard, { transform: [{ translateY }] }]}>
-          <Text style={styles.formTitle}>Login Untuk Masuk Sistem</Text>
+      <Animated.View style={[styles.formCard, { transform: [{ translateY }] }]}>
+        <Text style={styles.formTitle}>Login Untuk Masuk Sistem</Text>
 
-          <ScrollView style={{ flex: 1 }}>
-            <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
+        <ScrollView style={{ flex: 1 }}>
+          <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
 
-            <TextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />
+          <TextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />
 
-            <TouchableOpacity onPress={validate} style={[styles.button, styles.buttonEntry]} disabled={loading}>
-              <Text style={styles.buttonText}>Masuk</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={validate} style={[styles.button, styles.buttonEntry]} disabled={loading}>
+            <Text style={styles.buttonText}>Masuk</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.replace('Register')} style={styles.button} disabled={loading}>
-              <Text style={styles.buttonText}>Daftar</Text>
-            </TouchableOpacity>
-          </ScrollView>
-        </Animated.View>
-      </View>
-    </SafeAreaView>
+          <TouchableOpacity onPress={() => navigation.replace('Register')} style={styles.button} disabled={loading}>
+            <Text style={styles.buttonText}>Daftar</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </Animated.View>
+    </AuthLayout>
   )
 }

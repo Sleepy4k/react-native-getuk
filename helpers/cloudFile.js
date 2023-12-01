@@ -10,13 +10,11 @@ export const uploadFile = (file) => {
 
   const uploadTask = uploadBytes(storageRef, file, metadata);
 
-  let fileResult = imgName;
-
   uploadTask.then((snapshot) => {
     console.log(`Uploaded a blob or file! ${snapshot}`);
   });
 
-  return fileResult;
+  return imgName;
 }
 
 export const getFile = async (fileName) => {

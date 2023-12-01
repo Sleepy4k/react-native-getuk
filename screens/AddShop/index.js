@@ -1,5 +1,5 @@
-import React from 'react';
 import styles from './styles';
+import { useState } from 'react';
 import { storeModel } from '@models';
 import * as ImagePicker from 'expo-image-picker';
 import { cloudFile, getBlobFromUri, notification } from '@helpers';
@@ -17,12 +17,12 @@ import {
 } from 'react-native';
 
 export default function AddShop({ navigation }) {
-  const [address, setAddress] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
-  const [location, setLocation] = React.useState(null);
-  const [starRating, setStarRating] = React.useState(0);
-  const [chosenImage, setChosenImage] = React.useState(null);
-  const [locationName, setLocationName] = React.useState(null);
+  const [address, setAddress] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState(null);
+  const [starRating, setStarRating] = useState(0);
+  const [chosenImage, setChosenImage] = useState(null);
+  const [locationName, setLocationName] = useState(null);
 
   const handleChooseImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({

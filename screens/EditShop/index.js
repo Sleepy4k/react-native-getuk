@@ -1,6 +1,6 @@
-import React from 'react';
 import styles from './styles';
 import { storeModel } from '@models';
+import { useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { cloudFile, getBlobFroUri, notification } from '@helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -19,16 +19,16 @@ import {
 export default function EditShop({ route, navigation }) {
   const param = route.params.param;
 
-  const [loading, setLoading] = React.useState(false);
-  const [newImage, setNewImage] = React.useState(false);
-  const [oldImage, setOldImage] = React.useState(null);
-  const [chosenImage, setChosenImage] = React.useState({});
-  const [address, setAddress] = React.useState(param.store.address);
-  const [location, setLocation] = React.useState(param.store.location);
-  const [starRating, setStarRating] = React.useState(param.store.rating);
-  const [locationName, setLocationName] = React.useState(param.store.name);
+  const [loading, setLoading] = useState(false);
+  const [newImage, setNewImage] = useState(false);
+  const [oldImage, setOldImage] = useState(null);
+  const [chosenImage, setChosenImage] = useState({});
+  const [address, setAddress] = useState(param.store.address);
+  const [location, setLocation] = useState(param.store.location);
+  const [starRating, setStarRating] = useState(param.store.rating);
+  const [locationName, setLocationName] = useState(param.store.name);
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       if (param.store.image) {
         const imageLink = await cloudFile.getFile(param.store.image);

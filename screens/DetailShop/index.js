@@ -1,9 +1,9 @@
-import React from 'react';
 import styles from './styles';
 import { storeModel } from '@models';
 import { cloudFile, notification } from '@helpers';
 import { AuthContext } from '@contexts/AuthContext';
 import LogoGetukDetail from '@images/getukdetail.png';
+import { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft, faStar, faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -22,11 +22,11 @@ export default function DetailShop({ route, navigation }) {
 
   if (!store) return notification('store not found', 'Error');
 
-  const { userData } = React.useContext(AuthContext);
-  const [loading, setLoading] = React.useState(false);
-  const [image, setImage] = React.useState(LogoGetukDetail);
+  const { userData } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(LogoGetukDetail);
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       try {
         const url = await cloudFile.getFile(store.image);

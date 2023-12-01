@@ -1,19 +1,19 @@
-import React from 'react';
 import styles from './styles';
+import { AuthLayout } from '@layouts';
 import LogoGetuk from '@images/icon.png';
+import { useState, useEffect } from 'react';
 import {
   Text,
   View,
   Image,
   Animated,
-  SafeAreaView,
   TouchableOpacity
 } from 'react-native';
 
 export default function Landing({ navigation }) {
-  const [slideAnim] = React.useState(new Animated.Value(0));
+  const [slideAnim] = useState(new Animated.Value(0));
 
-  React.useEffect(() => {
+  useEffect(() => {
     Animated.timing(slideAnim, {
       toValue: 1,
       duration: 1000,
@@ -27,26 +27,24 @@ export default function Landing({ navigation }) {
   });
 
   return(
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View>
-          <View style={styles.appTitle}>
-            <Text style={styles.firstTitle}>Getuk Goreng</Text>
-            <Text style={styles.secondTitle}>Sokaraja</Text>
-          </View>
-
-          <Image style={styles.image} source={LogoGetuk}/>
+    <AuthLayout style={styles.container}>
+      <View>
+        <View style={styles.appTitle}>
+          <Text style={styles.firstTitle}>Getuk Goreng</Text>
+          <Text style={styles.secondTitle}>Sokaraja</Text>
         </View>
 
-        <Animated.View style={[styles.landingCard, { transform: [{ translateY }] }]}>
-          <Text style={styles.landingTitle}>Lokasi Toko Getuk Sokaraja</Text>
-          <Text style={styles.landingDescription}>Temukan toko oleh getuk khas sokaraja di sekitarmu</Text>
-
-          <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
-            <Text style={styles.buttonText}>Masuk</Text>
-          </TouchableOpacity>
-        </Animated.View>
+        <Image style={styles.image} source={LogoGetuk}/>
       </View>
-    </SafeAreaView>
+
+      <Animated.View style={[styles.landingCard, { transform: [{ translateY }] }]}>
+        <Text style={styles.landingTitle}>Lokasi Toko Getuk Sokaraja</Text>
+        <Text style={styles.landingDescription}>Temukan toko oleh getuk khas sokaraja di sekitarmu</Text>
+
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
+          <Text style={styles.buttonText}>Masuk</Text>
+        </TouchableOpacity>
+      </Animated.View>
+    </AuthLayout>
   )
 }

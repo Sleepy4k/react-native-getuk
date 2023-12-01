@@ -1,8 +1,8 @@
-import React from 'react';
 import styles from './styles';
 import { debounce } from 'lodash';
 import { storeModel } from '@models';
 import { AuthContext } from '@contexts/AuthContext';
+import { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faAdd, faLocationDot, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -16,11 +16,11 @@ import {
 } from 'react-native';
 
 export default function Dashboard({ navigation }) {
-  const [stores, setStores] = React.useState([]);
-  const [totalData, setTotalData] = React.useState(0);
-  const [searchShop, setSearchShop] = React.useState(null);
-  const [filteredShop, setFilteredShop] = React.useState([]);
-  const { userData, setLoggedOut } = React.useContext(AuthContext);
+  const [stores, setStores] = useState([]);
+  const [totalData, setTotalData] = useState(0);
+  const [searchShop, setSearchShop] = useState(null);
+  const [filteredShop, setFilteredShop] = useState([]);
+  const { userData, setLoggedOut } = useContext(AuthContext);
 
   const handleRefresh = async () => {
     try {
@@ -40,7 +40,7 @@ export default function Dashboard({ navigation }) {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleRefresh();
   }, []);
 
@@ -53,7 +53,7 @@ export default function Dashboard({ navigation }) {
     setTotalData(stores.length);
   }
 
-  const handleSearch = React.useCallback(debounce(searchFilter, 500), []);
+  const handleSearch = useCallback(debounce(searchFilter, 500), []);
 
   return(
     <SafeAreaView>
