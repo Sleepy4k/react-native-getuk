@@ -49,7 +49,7 @@ const MainStack = () => {
   return (
     <Stack.Navigator
       initialRouteName={initialRouteName}
-      screenOptions={{ headerShown: false, animationEnabled: false }}
+      screenOptions={{ headerShown: false, animationEnabled: true }}
     >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Landing" component={Landing} />
