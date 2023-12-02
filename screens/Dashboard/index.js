@@ -11,6 +11,7 @@ import { faAdd, faLocationDot, faSignOut } from '@fortawesome/free-solid-svg-ico
 import {
   Text,
   View,
+  Alert,
   ScrollView,
   RefreshControl,
   TouchableOpacity
@@ -81,12 +82,29 @@ export default function Dashboard({ navigation }) {
 
   const handleSearch = useCallback(debounce(searchFilter, 500), []);
 
+  const ConfirmationLogout = () => {
+    Alert.alert(
+      'Konfirmasi',
+      'Apakah kamu yakin ingin keluar?\n\n*Data yang belum tersimpan akan hilang',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'OK',
+          onPress: () => setLoggedOut(navigation)
+        }
+      ]
+    );
+  }
+
   return(
     <MainLayout containerStyle={styles.container} enableLoader={false}>
       <View style={styles.headerCard}>
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.headerTitle}>Data Lokasi</Text>
-          <TouchableOpacity onPress={() => setLoggedOut(navigation)} disabled={loading}>
+          <TouchableOpacity onPress={ConfirmationLogout} disabled={loading}>
             <FontAwesomeIcon icon={faSignOut} size={20} color='#000' style={styles.logoutIcon} />
           </TouchableOpacity>
         </View>
