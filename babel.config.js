@@ -8,6 +8,7 @@ module.exports = function (api) {
         alias: {
           "@assets": "./assets",
           "@models": "./models",
+          "@config": "./app.json",
           "@helpers": "./helpers",
           "@screens": "./screens",
           "@layouts": "./layouts",

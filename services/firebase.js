@@ -6,14 +6,15 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const extraConfig = Constants.expoConfig.extra;
 const firebaseConfig = {
-  apiKey: Constants?.manifest?.extra?.firebase.apiKey,
-  authDomain: Constants?.manifest?.extra?.firebase.authDomain,
-  projectId: Constants?.manifest?.extra?.firebase.projectId,
-  storageBucket: Constants?.manifest?.extra?.firebase.storageBucket,
-  messagingSenderId: Constants?.manifest?.extra?.firebase.messagingSenderId,
-  appId: Constants?.manifest?.extra?.firebase.appId,
-  measurementId: Constants?.manifest?.extra?.firebase.measurementId
+  apiKey: extraConfig.apiKey,
+  authDomain: extraConfig.authDomain,
+  projectId: extraConfig.projectId,
+  storageBucket: extraConfig.storageBucket,
+  messagingSenderId: extraConfig.messagingSenderId,
+  appId: extraConfig.appId,
+  measurementId: extraConfig.measurementId
 };
 
 // Initialize Firebase

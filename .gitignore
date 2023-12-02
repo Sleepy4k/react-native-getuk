@@ -30,8 +30,12 @@ yarn-error.*
 *.pem
 
 # local env files
-.env
 .env*.local
 
 # typescript
 *.tsbuildinfo
+
+# Config files
+dump.native.js
+data.native.js
+app.json.bak

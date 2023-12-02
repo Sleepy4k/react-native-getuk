@@ -5,6 +5,28 @@
     make this app more powerfull, also powered by expo dev and expo go version 47
 ~~~
 
+## Setup Application
+
+~~~bash
+    Before you can develop this project you must setup this project first,
+    Just follow the step it's very simple step
+~~~
+
+Init Env
+
+~~~bash
+    npm run env:init
+~~~
+
+add firebase config and eas project id into data.native.js
+then push config to app.json with
+
+~~~bash
+    npm run env:push
+~~~
+
+after finish 2 steps above, you can go to build application step
+
 ## Build Application
 
 ~~~bash
@@ -22,7 +44,7 @@
 ### Android
 
 ~~~bash
-    run command `eas build`, then select android platform
+    run command `npm run build`, then select android platform
 ~~~
 
 ~~~bash
@@ -32,7 +54,7 @@
 ### IOS
 
 ~~~bash
-    run command `eas build`, then select ios platform
+    run command `npm run build`, then select ios platform
 ~~~
 
 ~~~bash
@@ -51,4 +73,10 @@
 ~~~bash
     Done, your project stored in expo.dev website
     example: https://expo.dev/accounts/.../projects/.../...
+~~~
+
+After finish it, make sure you clear up config file with:
+
+~~~bash
+    npm run env:pop
 ~~~
