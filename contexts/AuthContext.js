@@ -1,57 +1,73 @@
 import { notification } from "@helpers";
+import { localstorage } from "@services";
 import { useState, useEffect, createContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [logged, setLogged] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userData, setUserData] = useState(null);
 
   const isLoggedIn = async () => {
+    if (loading) return notification("Please wait until the process done", "Warning");
+
+    setLoading(true);
+
     try {
-      let user = await AsyncStorage.getItem("authUser");
+      const user = await localstorage.get("authUser", true);
 
       if (user) {
-        user = JSON.parse(user);
-
         if (user.role === "admin") setIsAdmin(true);
 
         setLogged(true);
         setUserData(user);
       }
     } catch (error) {
-      notification.show("Error while check user data", "Error");
+      notification("Error while check user data", "Error");
       console.log(`error while checking login status: ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   const setLoggedIn = async (data) => {
+    if (loading) return notification("Please wait until the process done", "Warning");
+
+    setLoading(true);
+
     try {
-      await AsyncStorage.setItem("authUser", JSON.stringify(data));
+      await localstorage.store("authUser", data, true);
 
       if (data.role === "admin") setIsAdmin(true);
 
       setLogged(true);
       setUserData(data);
     } catch (error) {
-      notification.show("Error while set user data", "Error");
+      notification("Error while set user data", "Error");
       console.log(`error while login: ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   const setLoggedOut = async (navigation) => {
+    if (loading) return notification("Please wait until the process done", "Warning");
+
+    setLoading(true);
+
     try {
       setLogged(false);
       setIsAdmin(false);
       setUserData(null);
 
-      await AsyncStorage.removeItem("authUser");
+      await localstorage.remove("authUser");
     } catch (error) {
-      notification.show("Error while clear user data", "Error");
+      notification("Error while clear user data", "Error");
       console.log(`error while logout: ${error}`);
     } finally {
+      setLoading(false);
       navigation.replace("Landing");
     }
   };
@@ -65,7 +81,9 @@ export const AuthProvider = ({ children }) => {
       value={{
         logged,
         isAdmin,
+        loading,
         userData,
+        setLoading,
         setLoggedIn,
         setLoggedOut
       }}
