@@ -1,3 +1,5 @@
+import Loader from "./Loader";
+import CustomTextInput from "./CustomTextInput";
 import CustomStatusBar from "./CustomStatusBar";
 
-export { CustomStatusBar };
+export { Loader, CustomTextInput, CustomStatusBar };
