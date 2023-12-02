@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import Constants from "expo-constants";
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -6,13 +7,13 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCU5zFkp76mKchw0lUORT2RIJe14_cVETo",
-  authDomain: "toko-getuk.firebaseapp.com",
-  projectId: "toko-getuk",
-  storageBucket: "toko-getuk.appspot.com",
-  messagingSenderId: "1005601584494",
-  appId: "1:1005601584494:web:b6a80f501f7313d9747d7f",
-  measurementId: "G-BL30XSVPH5"
+  apiKey: Constants?.manifest?.extra?.firebase.apiKey,
+  authDomain: Constants?.manifest?.extra?.firebase.authDomain,
+  projectId: Constants?.manifest?.extra?.firebase.projectId,
+  storageBucket: Constants?.manifest?.extra?.firebase.storageBucket,
+  messagingSenderId: Constants?.manifest?.extra?.firebase.messagingSenderId,
+  appId: Constants?.manifest?.extra?.firebase.appId,
+  measurementId: Constants?.manifest?.extra?.firebase.measurementId
 };
 
 // Initialize Firebase
