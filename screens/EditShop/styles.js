@@ -29,19 +29,6 @@ const styles = StyleSheet.create({
     marginTop: responsive.heightPercentageToDP('2%'),
     marginLeft: responsive.widthPercentageToDP('30%')
   },
-  input: {
-    padding: '3%',
-    borderRadius: 10,
-    alignSelf: 'center',
-    backgroundColor: 'white',
-    width: responsive.widthPercentageToDP('85%'),
-    height: responsive.heightPercentageToDP('6%'),
-    marginTop: responsive.heightPercentageToDP('3%')
-  },
-  inputDescription: {
-    textAlignVertical: 'top',
-    height: responsive.heightPercentageToDP('10%')
-  },
   imageCard: {
     borderRadius: 30,
     alignSelf: 'center',

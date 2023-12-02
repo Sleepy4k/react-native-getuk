@@ -1,5 +1,6 @@
 import styles from './styles';
 import { storeModel } from '@models';
+import { MainLayout } from '@layouts';
 import { cloudFile, notification } from '@helpers';
 import { AuthContext } from '@contexts/AuthContext';
 import LogoGetukDetail from '@images/getukdetail.png';
@@ -13,18 +14,19 @@ import {
   Image,
   Linking,
   ScrollView,
-  SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
 
 export default function DetailShop({ route, navigation }) {
   const { store } = route.params.param;
 
-  if (!store) return notification('store not found', 'Error');
+  if (!store) {
+    notification('store not found', 'Error');
+    return navigation.replace('Dashboard');
+  }
 
-  const { userData } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(LogoGetukDetail);
+  const { userData, loading, setLoading } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
@@ -69,62 +71,60 @@ export default function DetailShop({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.nav}>
-          <TouchableOpacity onPress={() => navigation.replace('Dashboard')} disabled={loading}>
-            <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.backIcon} />
+    <MainLayout containerStyle={styles.container}>
+      <View style={styles.nav}>
+        <TouchableOpacity onPress={() => navigation.replace('Dashboard')} disabled={loading}>
+          <FontAwesomeIcon icon={faArrowLeft} size={20} color='#000' style={styles.backIcon} />
+        </TouchableOpacity>
+
+        <Text style={styles.screenTitle}>Detail</Text>
+      </View>
+
+      <ScrollView style={{ flex: 1 }}>
+        <Image style={styles.imageCard} source={image}/>
+
+        <View style={styles.shopCard}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.shopTitle}>{store.name}</Text>
+          </View>
+
+          <Text style={styles.shopAddress}>{store.address}</Text>
+
+          <TouchableOpacity onPress={() => Linking.openURL(store.location)} disabled={loading}>
+            <FontAwesomeIcon icon={faLocationArrow} size={30} color='#000' style={styles.mapIcon} />
           </TouchableOpacity>
 
-          <Text style={styles.screenTitle}>Detail</Text>
+          <Text style={styles.mapDescription}>Press the icon to see the location</Text>
         </View>
 
-        <ScrollView style={{ flex: 1 }}>
-          <Image style={styles.imageCard} source={image}/>
+        <View style={styles.starCard}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <FontAwesomeIcon
+              key={star}
+              icon={faStar}
+              size={27}
+              color={star <= store.rating ? '#000' : '#ccc'}
+              style={styles.starIcon}
+            />
+          ))}
+        </View>
 
-          <View style={styles.shopCard}>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={styles.shopTitle}>{store.name}</Text>
-            </View>
-
-            <Text style={styles.shopAddress}>{store.address}</Text>
-
-            <TouchableOpacity onPress={() => Linking.openURL(store.location)} disabled={loading}>
-              <FontAwesomeIcon icon={faLocationArrow} size={30} color='#000' style={styles.mapIcon} />
+        {userData && userData?.role == 'admin' && (
+          <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('EditShop', { param: { store: store } })} disabled={loading}>
+              <View style={[styles.button, { backgroundColor: 'green' }]}>
+                <Text style={styles.buttonText}>Edit</Text>
+              </View>
             </TouchableOpacity>
 
-            <Text style={styles.mapDescription}>Press the icon to see the location</Text>
+            <TouchableOpacity onPress={ConfirmationDelete} disabled={loading}>
+              <View style={[styles.button, { backgroundColor: 'red' }]}>
+                <Text style={styles.buttonText}>Delete</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-
-          <View style={styles.starCard}>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FontAwesomeIcon
-                key={star}
-                icon={faStar}
-                size={27}
-                color={star <= store.rating ? '#000' : '#ccc'}
-                style={styles.starIcon}
-              />
-            ))}
-          </View>
-
-          {userData && userData?.role == 'admin' && (
-            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <TouchableOpacity onPress={() => navigation.navigate('EditShop', { param: { store: store } })} disabled={loading}>
-                <View style={[styles.button, { backgroundColor: 'green' }]}>
-                  <Text style={styles.buttonText}>Edit</Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={ConfirmationDelete} disabled={loading}>
-                <View style={[styles.button, { backgroundColor: 'red' }]}>
-                  <Text style={styles.buttonText}>Delete</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          )}
-        </ScrollView>
-      </View>
-    </SafeAreaView>
+        )}
+      </ScrollView>
+    </MainLayout>
   )
 }

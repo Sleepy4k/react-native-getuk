@@ -2,37 +2,21 @@ import styles from './styles';
 import { userModel } from '@models';
 import { AuthLayout } from '@layouts';
 import { notification } from '@helpers';
+import { useState, useContext } from 'react';
+import { CustomTextInput } from '@components';
 import { AuthContext } from '@contexts/AuthContext';
-import { useState, useEffect, useContext } from 'react';
 import {
   Text,
-  Animated,
   Keyboard,
-  TextInput,
   ScrollView,
   TouchableOpacity
 } from 'react-native';
 
 export default function Login({ navigation }) {
-  const [loading, setLoading] = useState(false);
-  const { setLoggedIn } = useContext(AuthContext);
-  const [slideAnim] = useState(new Animated.Value(0));
+  const { loading, setLoading, setLoggedIn } = useContext(AuthContext);
   const [data, setData] = useState({
     email: '',
     password: ''
-  });
-
-  useEffect(() => {
-    Animated.timing(slideAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start();
-  }, [slideAnim]);
-
-  const translateY = slideAnim.interpolate({
-    inputRange: [0, 3],
-    outputRange: [85, 0],
   });
 
   const handleChange = (name, value) => {
@@ -43,23 +27,14 @@ export default function Login({ navigation }) {
     Keyboard.dismiss();
     if (loading) return;
 
-    if (!data.email) {
-      return notification('Email tidak boleh kosong', 'Error');
-    } else if (data.email.length < 5) {
-      return notification('Email minimal 5 karakter', 'Error');
-    } else if (data.email.length > 150) {
-      return notification('Email maksimal 150 karakter', 'Error');
-    } else if (!data.email.includes('@') || !data.email.includes('.')) {
-      return notification('Email tidak valid', 'Error');
-    }
+    if (!data.email) return notification('Email tidak boleh kosong', 'Error');
+    else if (data.email.length < 5) return notification('Email minimal 5 karakter', 'Error');
+    else if (data.email.length > 150) return notification('Email maksimal 150 karakter', 'Error');
+    else if (!data.email.includes('@') || !data.email.includes('.')) return notification('Email tidak valid', 'Error');
 
-    if (!data.password) {
-      return notification('Password tidak boleh kosong', 'Error');
-    } else if (data.password.length < 5) {
-      return notification('Password minimal 5 karakter', 'Error');
-    } else if (data.password.length > 150) {
-      return notification('Password maksimal 150 karakter', 'Error');
-    }
+    if (!data.password) return notification('Password tidak boleh kosong', 'Error');
+    else if (data.password.length < 5) return notification('Password minimal 5 karakter', 'Error');
+    else if (data.password.length > 150) return notification('Password maksimal 150 karakter', 'Error');
 
     setLoading(true);
     handleLogin();
@@ -89,16 +64,17 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <AuthLayout style={styles.container}>
-      <Text style={styles.screenTitle}>Login</Text>
-
-      <Animated.View style={[styles.formCard, { transform: [{ translateY }] }]}>
+    <AuthLayout
+      containerStyle={styles.container}
+      animatedStyle={styles.formCard}
+      header={<Text style={styles.screenTitle}>Login</Text>}
+    >
+      <>
         <Text style={styles.formTitle}>Login Untuk Masuk Sistem</Text>
 
         <ScrollView style={{ flex: 1 }}>
-          <TextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} />
-
-          <TextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} secureTextEntry={true} />
+          <CustomTextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} value={data.email} />
+          <CustomTextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} value={data.password} secureTextEntry={true} />
 
           <TouchableOpacity onPress={validate} style={[styles.button, styles.buttonEntry]} disabled={loading}>
             <Text style={styles.buttonText}>Masuk</Text>
@@ -108,7 +84,7 @@ export default function Login({ navigation }) {
             <Text style={styles.buttonText}>Daftar</Text>
           </TouchableOpacity>
         </ScrollView>
-      </Animated.View>
+      </>
     </AuthLayout>
   )
 }
