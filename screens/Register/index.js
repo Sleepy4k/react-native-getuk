@@ -52,7 +52,7 @@ export default function Login({ navigation }) {
         notification('Email already exist', 'Error');
       }
     } catch (error) {
-      notification('Register error', 'Error');
+      notification(`Register error ${error.message}`, 'Error');
       console.log('Register error', error);
     } finally {
       setLoading(false);
@@ -70,7 +70,7 @@ export default function Login({ navigation }) {
 
         <ScrollView style={{ flex: 1 }}>
           <CustomTextInput style={styles.input} editable={!loading} placeholder="Alamat Email" onChangeText={(email) => handleChange("email", email)} value={data.email} />
-          <CustomTextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} value={data.email} secureTextEntry={true} />
+          <CustomTextInput style={[styles.input, styles.inputPassword]} editable={!loading} placeholder="Password"  onChangeText={(password) => handleChange("password", password)} value={data.password} secureTextEntry={true} />
 
           <TouchableOpacity onPress={validate} style={[styles.button, styles.buttonEntry]} disabled={loading}>
             <Text style={styles.buttonText}>Daftar</Text>
