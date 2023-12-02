@@ -56,7 +56,7 @@ export default function Login({ navigation }) {
         notification('Akun tidak ditemukan', 'Error');
       }
     } catch (error) {
-      notification(`Login error ${error.message}`, 'Error');
+      notification('Something went wrong when try to register', 'Error');
       console.log('Login error', error);
     } finally {
       setLoading(false);

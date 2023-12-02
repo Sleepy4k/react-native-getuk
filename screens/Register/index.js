@@ -52,7 +52,7 @@ export default function Login({ navigation }) {
         notification('Email already exist', 'Error');
       }
     } catch (error) {
-      notification(`Register error ${error.message}`, 'Error');
+      notification('Something went wrong when try to register', 'Error');
       console.log('Register error', error);
     } finally {
       setLoading(false);

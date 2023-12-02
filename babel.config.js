@@ -19,7 +19,9 @@ module.exports = function (api) {
           "@components": "./components",
           "@navigations": "./navigations",
         },
+        extensions: [".tsx", ".ts", ".js", ".json"]
       }],
+      "react-native-reanimated/plugin"
     ],
   };
 };
