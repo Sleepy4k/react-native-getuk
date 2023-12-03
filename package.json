@@ -43,6 +43,7 @@
     "@react-native-masked-view/masked-view": "0.2.8",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/stack": "^6.3.14",
+    "crypto-es": "^2.1.0",
     "expo": "~47.0.12",
     "expo-constants": "~14.0.2",
     "expo-image-picker": "~14.0.2",
