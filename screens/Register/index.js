@@ -1,8 +1,8 @@
 import styles from './styles';
 import { userModel } from '@models';
 import { AuthLayout } from '@layouts';
-import { notification } from '@helpers';
 import { useState, useContext } from 'react';
+import { hash, notification } from '@helpers';
 import { CustomTextInput } from '@components';
 import { AuthContext } from '@contexts/AuthContext';
 import {
@@ -16,8 +16,7 @@ export default function Login({ navigation }) {
   const { loading, setLoading, setLoggedIn } = useContext(AuthContext);
   const [data, setData] = useState({
     email: '',
-    password: '',
-    role: 'user'
+    password: ''
   });
 
   const handleChange = (name, value) => {
@@ -43,7 +42,14 @@ export default function Login({ navigation }) {
 
   const handleRegister = async () => {
     try {
-      const user = await userModel.createUser(data);
+      const encryptionKey = hash.generateKey(data.email, data.password);
+      const encryptedPassword = await hash.encrypt(encryptionKey, data.password);
+      const user = await userModel.createUser({
+        email: data.email,
+        password: encryptedPassword,
+        key: encryptionKey,
+        role: 'user'
+      });
 
       if (user) {
         await setLoggedIn(user);

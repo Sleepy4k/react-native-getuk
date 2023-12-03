@@ -1,8 +1,8 @@
 import styles from './styles';
 import { userModel } from '@models';
 import { AuthLayout } from '@layouts';
-import { notification } from '@helpers';
 import { useState, useContext } from 'react';
+import { hash, notification } from '@helpers';
 import { CustomTextInput } from '@components';
 import { AuthContext } from '@contexts/AuthContext';
 import {
@@ -45,7 +45,9 @@ export default function Login({ navigation }) {
       const user = await userModel.findUser(data.email);
 
       if (user) {
-        if (user.password === data.password) {
+        const passwordMatch = await hash.verify(user.key, data.password, user.password);
+
+        if (passwordMatch) {
           await setLoggedIn(user);
 
           navigation.navigate('Dashboard');
