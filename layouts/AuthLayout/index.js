@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import { Loader } from '@components';
 import { AuthContext } from '@contexts/AuthContext';
-import { useState, useEffect, useContext } from 'react';
 import { View, Animated, SafeAreaView } from 'react-native';
+import { memo, useState, useEffect, useContext } from 'react';
 
-export default function AuthLayout({ containerStyle, animatedStyle, header, children }) {
+const AuthLayout = ({ containerStyle, animatedStyle, header, children }) => {
   const { loading } = useContext(AuthContext);
   const [slideAnim] = useState(new Animated.Value(0));
 
@@ -33,3 +34,17 @@ export default function AuthLayout({ containerStyle, animatedStyle, header, chil
     </SafeAreaView>
   )
 }
+
+AuthLayout.propTypes = {
+  containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  animatedStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  header: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+AuthLayout.defaultProps = {
+  containerStyle: {},
+  animatedStyle: {},
+};
+
+export default memo(AuthLayout);

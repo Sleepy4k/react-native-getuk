@@ -1,6 +1,6 @@
-import { useContext } from 'react';
 import PropTypes from "prop-types";
 import { Loader } from '@components';
+import { memo, useContext } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import { AuthContext } from '@contexts/AuthContext';
 
@@ -27,4 +27,4 @@ MainLayout.defaultProps = {
   enableLoader: true
 };
 
-export default MainLayout;
+export default memo(MainLayout);
