@@ -1,5 +1,6 @@
-import { notification } from "@helpers";
+import { networkModel } from "@models";
 import { localstorage } from "@services";
+import { netinfo, notification } from "@helpers";
 import { useState, useEffect, createContext } from "react";
 
 export const AuthContext = createContext();
@@ -9,6 +10,29 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [ethernet, setEthernet] = useState({});
+
+  const checkConnection = async () => {
+    const connection = await netinfo.getNetworkInfo();
+    setEthernet(connection);
+
+    if (connection.isConnected && connection.isInternetReachable) {
+      const userIP = await netinfo.getIpAddress();
+
+      if (!userIP) return;
+
+      try {
+        await networkModel.createNetwork({
+          ip: userIP,
+          type: connection.type,
+          isConnected: connection.isConnected,
+          isInternetReachable: connection.isInternetReachable
+        });
+      } catch (error) {
+        console.log(`error while add network: ${error}`);
+      }
+    }
+  }
 
   const isLoggedIn = async () => {
     if (loading) return notification("Please wait until the process done", "Warning");
@@ -74,6 +98,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     isLoggedIn();
+    checkConnection();
   }, []);
 
   return (
@@ -82,6 +107,7 @@ export const AuthProvider = ({ children }) => {
         logged,
         isAdmin,
         loading,
+        ethernet,
         userData,
         setLoading,
         setLoggedIn,
