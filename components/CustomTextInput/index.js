@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from './styles';
 import PropTypes from "prop-types";
 import { TextInput } from "react-native";
@@ -70,4 +71,4 @@ CustomTextInput.defaultProps = {
   secureTextEntry: false,
 };
 
-export default CustomTextInput;
+export default memo(CustomTextInput);

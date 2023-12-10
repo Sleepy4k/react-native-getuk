@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./styles.js";
 import PropTypes from "prop-types";
 import { ActivityIndicator } from "react-native";
@@ -16,6 +17,4 @@ Loader.defaultProps = {
   color: "#0000ff",
 };
 
-export default Loader;
-
-// Path: src\components\Loader\index.js
+export default memo(Loader);
