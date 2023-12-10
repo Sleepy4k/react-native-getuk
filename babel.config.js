@@ -3,6 +3,8 @@ module.exports = function (api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: [
+      "transform-remove-console",
+      "react-native-reanimated/plugin",
       ["module-resolver", {
         root: ["./"],
         alias: {
@@ -20,8 +22,7 @@ module.exports = function (api) {
           "@navigations": "./navigations",
         },
         extensions: [".tsx", ".ts", ".js", ".json"]
-      }],
-      "react-native-reanimated/plugin"
+      }]
     ],
   };
 };
