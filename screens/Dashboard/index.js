@@ -1,5 +1,6 @@
 import styles from './styles';
 import { debounce } from 'lodash';
+import PropTypes from "prop-types";
 import { storeModel } from '@models';
 import { MainLayout } from '@layouts';
 import { CustomTextInput } from '@components';
@@ -17,8 +18,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default function Dashboard({ navigation }) {
-  const { userData, loading, setLoading, setLoggedOut } = useContext(AuthContext);
+const Dashboard = ({ navigation }) => {
+  const { userData, loading, ethernet, setLoading, setLoggedOut } = useContext(AuthContext);
   const [state, setState] = useState({
     stores: [],
     totalData: 0,
@@ -43,6 +44,8 @@ export default function Dashboard({ navigation }) {
 
   const getCurrentData = async () => {
     try {
+      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+
       let stores;
 
       if (state.searchShop) {
@@ -114,6 +117,7 @@ export default function Dashboard({ navigation }) {
           editable={!loading}
           placeholder="Search Shop"
           onChangeText={handleSearch}
+          disabled={(!ethernet.isConnected || !ethernet.isInternetReachable)}
         />
       </View>
 
@@ -149,3 +153,15 @@ export default function Dashboard({ navigation }) {
     </MainLayout>
   )
 }
+
+Dashboard.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+Dashboard.defaultProps = {
+  navigation: {
+    navigate: () => {}
+  },
+};
+
+export default Dashboard;

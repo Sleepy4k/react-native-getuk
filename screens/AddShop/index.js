@@ -1,4 +1,5 @@
 import styles from './styles';
+import PropTypes from "prop-types";
 import { storeModel } from '@models';
 import { MainLayout } from '@layouts';
 import { useState, useContext } from 'react';
@@ -17,8 +18,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default function AddShop({ navigation }) {
-  const { loading, setLoading } = useContext(AuthContext);
+const AddShop = ({ navigation }) => {
+  const { loading, ethernet, setLoading } = useContext(AuthContext);
   const [state, setState] = useState({
     address: null,
     location: null,
@@ -76,6 +77,8 @@ export default function AddShop({ navigation }) {
 
   const handleSave = async () => {
     try {
+      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+
       const blob = await getBlobFromUri(state.chosenImage.uri);
       const url = await cloudFile.uploadFile(blob);
 
@@ -165,3 +168,15 @@ export default function AddShop({ navigation }) {
     </MainLayout>
   );
 }
+
+AddShop.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+AddShop.defaultProps = {
+  navigation: {
+    replace: () => {}
+  },
+};
+
+export default AddShop;

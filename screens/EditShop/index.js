@@ -1,4 +1,5 @@
 import styles from './styles';
+import PropTypes from "prop-types";
 import { storeModel } from '@models';
 import { MainLayout } from '@layouts';
 import { CustomTextInput } from '@components';
@@ -17,7 +18,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default function EditShop({ route, navigation }) {
+const EditShop = ({ route, navigation }) => {
   const { store } = route.params.param;
 
   if (!store) {
@@ -25,7 +26,7 @@ export default function EditShop({ route, navigation }) {
     return navigation.replace('Dashboard');
   }
 
-  const { loading, setLoading } = useContext(AuthContext);
+  const { loading, ethernet, setLoading } = useContext(AuthContext);
   const [state, setState] = useState({
     newImage: false,
     oldImage: null,
@@ -42,6 +43,8 @@ export default function EditShop({ route, navigation }) {
 
   useEffect(() => {
     (async () => {
+      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+
       if (!store?.image) return;
 
       const imageLink = await cloudFile.getFile(store?.image);
@@ -98,6 +101,8 @@ export default function EditShop({ route, navigation }) {
 
   const handleSave = async () => {
     try {
+      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+
       let url;
 
       if (state.newImage) {
@@ -194,3 +199,23 @@ export default function EditShop({ route, navigation }) {
     </MainLayout>
   )
 }
+
+EditShop.propTypes = {
+  route: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
+};
+
+EditShop.defaultProps = {
+  route: {
+    params: {
+      param: {
+        store: {}
+      }
+    }
+  },
+  navigation: {
+    replace: () => {}
+  },
+};
+
+export default EditShop;

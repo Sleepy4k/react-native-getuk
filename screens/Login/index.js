@@ -1,4 +1,5 @@
 import styles from './styles';
+import PropTypes from "prop-types";
 import { userModel } from '@models';
 import { AuthLayout } from '@layouts';
 import { useState, useContext } from 'react';
@@ -12,8 +13,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default function Login({ navigation }) {
-  const { loading, setLoading, setLoggedIn } = useContext(AuthContext);
+const Login = ({ navigation }) => {
+  const { loading, ethernet, setLoading, setLoggedIn } = useContext(AuthContext);
   const [data, setData] = useState({
     email: '',
     password: ''
@@ -42,6 +43,8 @@ export default function Login({ navigation }) {
 
   const handleLogin = async () => {
     try {
+      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+
       const user = await userModel.findUser(data.email);
 
       if (user) {
@@ -90,3 +93,16 @@ export default function Login({ navigation }) {
     </AuthLayout>
   )
 }
+
+Login.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+Login.defaultProps = {
+  navigation: {
+    replace: () => {},
+    navigate: () => {}
+  },
+};
+
+export default Login;

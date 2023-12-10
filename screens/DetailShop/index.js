@@ -1,4 +1,5 @@
 import styles from './styles';
+import PropTypes from "prop-types";
 import { storeModel } from '@models';
 import { MainLayout } from '@layouts';
 import { cloudFile, notification } from '@helpers';
@@ -17,7 +18,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default function DetailShop({ route, navigation }) {
+const DetailShop = ({ route, navigation }) => {
   const { store } = route.params.param;
 
   if (!store) {
@@ -26,11 +27,13 @@ export default function DetailShop({ route, navigation }) {
   }
 
   const [image, setImage] = useState(LogoGetukDetail);
-  const { userData, loading, setLoading } = useContext(AuthContext);
+  const { userData, loading, ethernet, setLoading } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
       try {
+        if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+  
         const url = await cloudFile.getFile(store.image);
         setImage({ uri: url });
       } catch (error) {
@@ -40,6 +43,8 @@ export default function DetailShop({ route, navigation }) {
   }, []);
 
   const handleDelete = async () => {
+    if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+
     setLoading(true);
 
     try {
@@ -128,3 +133,24 @@ export default function DetailShop({ route, navigation }) {
     </MainLayout>
   )
 }
+
+DetailShop.propTypes = {
+  route: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
+};
+
+DetailShop.defaultProps = {
+  route: {
+    params: {
+      param: {
+        store: {}
+      }
+    }
+  },
+  navigation: {
+    replace: () => {},
+    navigate: () => {}
+  },
+};
+
+export default DetailShop;

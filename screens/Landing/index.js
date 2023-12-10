@@ -1,4 +1,5 @@
 import styles from './styles';
+import PropTypes from "prop-types";
 import { useContext } from 'react';
 import { AuthLayout } from '@layouts';
 import LogoGetuk from '@images/icon.png';
@@ -10,7 +11,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default function Landing({ navigation }) {
+const Landing = ({ navigation }) => {
   const { loading } = useContext(AuthContext);
 
   const header = (
@@ -26,9 +27,9 @@ export default function Landing({ navigation }) {
 
   return(
     <AuthLayout
+      header={header}
       containerStyle={styles.container}
       animatedStyle={styles.landingCard}
-      header={header}
     >
       <>
         <Text style={styles.landingTitle}>Lokasi Toko Getuk Sokaraja</Text>
@@ -41,3 +42,15 @@ export default function Landing({ navigation }) {
     </AuthLayout>
   )
 }
+
+Landing.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+Landing.defaultProps = {
+  navigation: {
+    navigate: () => {}
+  },
+};
+
+export default Landing;
