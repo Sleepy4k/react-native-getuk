@@ -9,7 +9,7 @@ const initConnection = async () => {
 
 export const uploadFile = async (file) => {
   const ethernet = await initConnection();
-  if (!ethernet.isConnected || !ethernet.isInternetReachable) return;
+  if (!ethernet.isInternetReachable) return;
 
   const imgName = "img-" + new Date().getTime() + ".png";
   const storageRef = ref(storage, imgName);
@@ -28,7 +28,7 @@ export const uploadFile = async (file) => {
 
 export const getFile = async (fileName) => {
   const ethernet = await initConnection();
-  if (!ethernet.isConnected || !ethernet.isInternetReachable) return;
+  if (!ethernet.isInternetReachable) return;
 
   const storageRef = ref(storage, fileName);
 
@@ -41,7 +41,7 @@ export const getFile = async (fileName) => {
 
 export const deleteFile = async (fileName) => {
   const ethernet = await initConnection();
-  if (!ethernet.isConnected || !ethernet.isInternetReachable) return;
+  if (!ethernet.isInternetReachable) return;
 
   const storageRef = ref(storage, fileName);
 

@@ -6,11 +6,6 @@ const getNetworkInfo = async () => {
     return networkInfo;
   } catch (error) {
     console.log(`error while get network info: ${error}`);
-    return {
-      type: 'unknown',
-      isConnected: false,
-      isInternetReachable: false
-    };
   }
 }
 
@@ -20,7 +15,7 @@ const getIpAddress = async () => {
     return ipAddress;
   } catch (error) {
     console.log(`error while get ip address: ${error}`);
-    return null;
+    return "0.0.0.0";
   }
 }
 
