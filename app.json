@@ -2,7 +2,7 @@
   "expo": {
     "name": "Getukan",
     "slug": "getukan",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "description": "Getukan is a new way to find getuk store near you",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -28,7 +28,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.benjamin4k.getukan",
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
