@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
+import { AuthContext } from '@contexts/AuthContext';
+import { useState, useEffect, useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -9,42 +10,33 @@ import {
   Register,
   EditShop,
   Dashboard,
-  DetailShop
+  ReviewShop,
+  DetailShop,
+  AddReviewShop,
+  EditReviewShop
 } from "@screens";
 
 const MainStack = () => {
   const Stack = createStackNavigator();
-  const [isReady, setIsReady] = useState(false);
+  const { userData, isLoggedIn } = useContext(AuthContext);
   const [initialRouteName, setInitialRouteName] = useState("Landing");
 
   useEffect(() => {
-    const prepare = async () => {
-      await SplashScreen.preventAutoHideAsync();
-    };
-
-    const getInitialRouteName = async () => {
+    (async () => {
       try {
-        const authUser = await AsyncStorage.getItem("authUser");
+        await SplashScreen.preventAutoHideAsync();
+        await isLoggedIn();
 
-        if (authUser) {
-          const auth = JSON.parse(authUser);
-          if (auth.role) setInitialRouteName("Dashboard");
+        if (userData) {
+          if (userData?.role) setInitialRouteName("Dashboard");
         }
       } catch (error) {
         console.log(error.message);
       } finally {
-        setIsReady(true);
+        SplashScreen.hideAsync();
       }
-    };
-
-    prepare();
-    getInitialRouteName();
+    })
   }, []);
-
-
-  if (!isReady) return null;
-
-  SplashScreen.hideAsync();
 
   return (
     <Stack.Navigator
@@ -57,7 +49,10 @@ const MainStack = () => {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="EditShop" component={EditShop} />
       <Stack.Screen name="Dashboard" component={Dashboard} />
+      <Stack.Screen name="ReviewShop" component={ReviewShop} />
       <Stack.Screen name="DetailShop" component={DetailShop} />
+      <Stack.Screen name="AddReviewShop" component={AddReviewShop} />
+      <Stack.Screen name="EditReviewShop" component={EditReviewShop} />
     </Stack.Navigator>
   );
 };
