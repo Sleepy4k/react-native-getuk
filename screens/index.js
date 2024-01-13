@@ -4,7 +4,10 @@ import AddShop from "./AddShop";
 import Register from "./Register";
 import EditShop from "./EditShop";
 import Dashboard from "./Dashboard";
+import ReviewShop from "./ReviewShop";
 import DetailShop from "./DetailShop";
+import AddReviewShop from "./AddReviewShop";
+import EditReviewShop from "./EditReviewShop";
 
 export {
   Login,
@@ -13,5 +16,8 @@ export {
   Register,
   EditShop,
   Dashboard,
-  DetailShop
+  ReviewShop,
+  DetailShop,
+  AddReviewShop,
+  EditReviewShop
 };
