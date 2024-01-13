@@ -10,13 +10,17 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userData, setUserData] = useState(null);
-  const [ethernet, setEthernet] = useState({});
+  const [ethernet, setEthernet] = useState({
+    type: "unknown",
+    isConnected: false,
+    isInternetReachable: false
+  });
 
   const checkConnection = async () => {
     const connection = await netinfo.getNetworkInfo();
     setEthernet(connection);
 
-    if (connection.isConnected && connection.isInternetReachable) {
+    if (connection.isConnected || connection.isInternetReachable) {
       const userIP = await netinfo.getIpAddress();
 
       if (!userIP) return;
@@ -25,8 +29,8 @@ export const AuthProvider = ({ children }) => {
         await networkModel.createNetwork({
           ip: userIP,
           type: connection.type,
-          isConnected: connection.isConnected,
-          isInternetReachable: connection.isInternetReachable
+          isConnected: connection.isConnected || false,
+          isInternetReachable: connection.isInternetReachable || false
         });
       } catch (error) {
         console.log(`error while add network: ${error}`);
@@ -53,6 +57,7 @@ export const AuthProvider = ({ children }) => {
       console.log(`error while checking login status: ${error}`);
     } finally {
       setLoading(false);
+      await checkConnection();
     }
   };
 
@@ -97,8 +102,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    isLoggedIn();
-    checkConnection();
+    (async () => {
+      await isLoggedIn();
+    })();
   }, []);
 
   return (
@@ -110,6 +116,7 @@ export const AuthProvider = ({ children }) => {
         ethernet,
         userData,
         setLoading,
+        isLoggedIn,
         setLoggedIn,
         setLoggedOut
       }}
