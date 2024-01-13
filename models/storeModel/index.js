@@ -12,17 +12,17 @@ import {
 } from 'firebase/firestore';
 
 export const getStores = async () => {
-  const users = [];
+  const stores = [];
   const querySnapshot = await getDocs(collection(db, "stores"));
 
   querySnapshot.forEach((doc) => {
-    users.push({
+    stores.push({
       id: doc.id,
       ...doc.data()
     });
   });
 
-  return users;
+  return stores;
 }
 
 export const findStore = async (id) => {
@@ -72,16 +72,14 @@ export const deleteStore = async (id) => {
 }
 
 export const searchStore = async (name) => {
-  const stores = [];
-  const q = query(collection(db, "stores"), where("name", ">=", name), where("name", "<=", name + "\uf8ff"));
-  const querySnapshot = await getDocs(q);
+  const filteredShop = [];
+  const shops = await getStores();
+  const targetName = name.toLowerCase();
 
-  querySnapshot.forEach((doc) => {
-    stores.push({
-      id: doc.id,
-      ...doc.data()
-    });
-  });
+  shops.forEach((shop) => {
+    const shopName = shop.name.toLowerCase();
+    if (shopName.search(targetName) !== -1) filteredShop.push(shop);
+  })
 
-  return stores;
+  return filteredShop;
 }
