@@ -1,10 +1,9 @@
 import styles from './styles';
 import { debounce } from 'lodash';
 import PropTypes from "prop-types";
-import { storeModel } from '@models';
 import { MainLayout } from '@layouts';
-import { CustomTextInput } from '@components';
 import { wait, notification } from '@helpers';
+import { storeModel, reviewModel } from '@models';
 import { AuthContext } from '@contexts/AuthContext';
 import { useState, useEffect, useContext, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -13,23 +12,18 @@ import {
   Text,
   View,
   Alert,
+  TextInput,
   ScrollView,
   RefreshControl,
   TouchableOpacity
 } from 'react-native';
 
 const Dashboard = ({ navigation }) => {
+  const [stores, setStores] = useState([]);
+  const [totalData, setTotalData] = useState(0);
+  const [searchShop, setSearchShop] = useState(null);
+  const [filteredShop, setFilteredShop] = useState([]);
   const { userData, loading, ethernet, setLoading, setLoggedOut } = useContext(AuthContext);
-  const [state, setState] = useState({
-    stores: [],
-    totalData: 0,
-    searchShop: null,
-    filteredShop: [],
-  });
-
-  const handleState = (name, value) => {
-    setState((prevValues) => ({ ...prevValues, [name]: value }));
-  }
 
   const handleRefresh = useCallback(() => {
     setLoading(true);
@@ -44,21 +38,21 @@ const Dashboard = ({ navigation }) => {
 
   const getCurrentData = async () => {
     try {
-      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+      if (!ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
 
       let stores;
 
-      if (state.searchShop) {
-        stores = await storeModel.searchStore(state.searchShop);
-        handleState('stores', []);
-        handleState('filteredShop', stores);
+      if (searchShop) {
+        stores = await storeModel.searchStore(searchShop);
+        setStores([]);
+        setFilteredShop(stores);
       } else {
         stores = await storeModel.getStores();
-        handleState('stores', stores);
-        handleState('filteredShop', []);
+        setStores(stores);
+        setFilteredShop([]);
       }
 
-      handleState('totalData', stores?.length);
+      setTotalData(stores?.length);
     } catch (error) {
       notification('error while get stores', 'Error');
       console.log(`error while get stores: ${error}`);
@@ -66,17 +60,19 @@ const Dashboard = ({ navigation }) => {
   }
 
   useEffect(() => {
-    getCurrentData();
+    (async () => {
+      await getCurrentData();
+    })()
   }, []);
 
-  const displayedStores = (state.stores && !state.searchShop && state.stores.length > 0) ? state.stores : state.filteredShop;
+  const displayedStores = (stores && !searchShop && stores.length > 0) ? stores : filteredShop;
 
   const searchFilter = async (textParam) => {
     try {
       const stores = await storeModel.searchStore(textParam);
-      handleState('searchShop', textParam);
-      handleState('filteredShop', stores);
-      handleState('totalData', stores?.length);
+      setSearchShop(textParam);
+      setFilteredShop(stores);
+      setTotalData(stores?.length);
     } catch (error) {
       notification('error while search store', 'Error');
       console.log(`error while search store: ${error}`);
@@ -112,9 +108,9 @@ const Dashboard = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <CustomTextInput
-          style={styles.searchInput}
+        <TextInput
           editable={!loading}
+          style={styles.searchInput}
           placeholder="Search Shop"
           onChangeText={handleSearch}
           disabled={(!ethernet.isConnected || !ethernet.isInternetReachable)}
@@ -127,7 +123,7 @@ const Dashboard = ({ navigation }) => {
           onRefresh={handleRefresh}
         />
       }>
-        <Text style={styles.totalData}>Total Data: {state.totalData}</Text>
+        <Text style={styles.totalData}>Total Data: {totalData}</Text>
 
         {displayedStores.map((store, index) => (
           <View key={index} style={styles.shopCard}>

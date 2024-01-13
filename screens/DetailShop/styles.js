@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     width: responsive.widthPercentageToDP('90%'),
-    marginTop: responsive.heightPercentageToDP('3%')
+    marginTop: responsive.heightPercentageToDP('2%')
   },
   shopTitle: {
     padding: '3%',
@@ -51,11 +51,21 @@ const styles = StyleSheet.create({
     marginTop: responsive.heightPercentageToDP('2%'),
     marginLeft: responsive.widthPercentageToDP('1%')
   },
-  shopAddress: {
+  shopDetail: {
     opacity: 0.6,
     padding: '3%',
     fontSize: responsive.scaleFontSize(15),
     marginLeft: responsive.widthPercentageToDP('2%')
+  },
+  shopAddress: {
+    opacity: 0.6,
+    padding: '3%',
+    fontSize: responsive.scaleFontSize(15),
+    marginTop: responsive.heightPercentageToDP('2%'),
+    marginLeft: responsive.widthPercentageToDP('2%')
+  },
+  spacingCol: {
+    padding: '1%',
   },
   mapIcon: {
     margin: '5%',
@@ -71,19 +81,24 @@ const styles = StyleSheet.create({
   starCard: {
     alignSelf: 'center',
     flexDirection: 'row',
-    marginTop: responsive.heightPercentageToDP('3%')
+    marginTop: responsive.heightPercentageToDP('2%')
   },
   starIcon: {
     margin: '5%',
     padding: '3%',
     alignSelf: 'center'
   },
+  slider: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   button: {
-    margin: '10%',
+    margin: '3%',
     borderRadius: 10,
     width: responsive.widthPercentageToDP('25%'),
     height: responsive.heightPercentageToDP('5%'),
-    marginLeft: responsive.widthPercentageToDP('9%'),
+    marginLeft: responsive.widthPercentageToDP('4%'),
     marginTop: responsive.heightPercentageToDP('3%')
   },
   buttonText: {

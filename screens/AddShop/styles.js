@@ -53,12 +53,30 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     marginTop: responsive.heightPercentageToDP('5%'),
-    marginBottom: responsive.heightPercentageToDP('5%')
+    marginBottom: responsive.heightPercentageToDP('2%')
   },
   starIcon: {
     margin: '4%',
     padding: '3%',
     alignSelf: 'center'
+  },
+  slider: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  button: {
+    margin: '10%',
+    borderRadius: 10,
+    width: responsive.widthPercentageToDP('50%'),
+    height: responsive.heightPercentageToDP('5%'),
+    marginLeft: responsive.widthPercentageToDP('9%')
+  },
+  buttonText: {
+    margin: '3.5%',
+    color: 'white',
+    alignSelf: 'center',
+    fontSize: responsive.scaleFontSize(18)
   }
 });
 

@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+      if (!ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
 
       const user = await userModel.findUser(data.email);
 

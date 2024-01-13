@@ -43,7 +43,7 @@ const Register = ({ navigation }) => {
 
   const handleRegister = async () => {
     try {
-      if (!ethernet.isConnected || !ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
+      if (!ethernet.isInternetReachable) return notification('Tidak ada koneksi internet', 'Error');
 
       const encryptionKey = hash.generateKey(data.email, data.password);
       const encryptedPassword = await hash.encrypt(encryptionKey, data.password);
